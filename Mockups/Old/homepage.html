@@ -1,0 +1,248 @@
+<html>
+ 	<head>
+  	<!-- Material Design Theme --> 
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script> 
+
+ </head>
+ 
+ <body>
+  	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  		<header class = "mdl-layout__header">
+    		<div class = "mdl-layout__header-row">
+    			<h1 class = "mdl-layout-title" style="font-family: 'Open Sans', sans-serif;">GrappleMart</h1>
+    			<div class = "mdl-layout-spacer"></div>
+
+    			<!-- Where user navigation should be placed --> 
+    			<nav class = "mdl-navigation">
+    				<a class = "mdl-navigation__link" href = "videos.html">Videos</a>
+    				<a class = "mdl-navigation__link" href = "purchased_products.html">Purchased Products</a>
+    				<a class = "mdl-navigation__link" href = "social.html">Social</a>
+    				<a class = "mdl-navigation__link active" href = "homepage.html"><i class="material-icons">account_circle</i></a>
+    			</nav> 
+    		</div>
+    	</header>
+
+    	<div class="mdl-layout__drawer">
+    		<!-- Where global navigation should be placed --> 
+		    <span class="mdl-layout-title">Navigation</span>
+		    <nav class="mdl-navigation">
+		      <a class="mdl-navigation__link" href="">Home</a>
+		      <a class="mdl-navigation__link" href="">About</a>
+		      <a class="mdl-navigation__link" href="">Contact</a>
+		    </nav>
+		  </div>
+
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<br> <!-- break --> 
+
+		    	<!-- Card 1: Notifications --> 
+		    	<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title" id="notifications-card">
+					    <h2 class="mdl-card__title-text">Notifications</h2>
+					  </div>
+					  <div class="mdl-card__supporting-text">
+
+					    <ul class="demo-list-three mdl-list">
+							  <li class="mdl-list__item mdl-list__item--three-line">
+							    <span class="mdl-list__item-primary-content">
+							      <i class="material-icons mdl-list__item-avatar">mail</i>
+							      <span>Notification 1 Title</span>
+							      <span class="mdl-list__item-text-body">
+							        Place your content for notification 1 here. 
+							      </span>
+							    </span>
+							    <span class="mdl-list__item-secondary-content">
+							      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+							    </span>
+							  </li>
+
+							  
+
+							  <li class="mdl-list__item mdl-list__item--three-line">
+							    <span class="mdl-list__item-primary-content">
+							      <i class="material-icons  mdl-list__item-avatar">mail</i>
+							      <span>Notification 2 Title</span>
+							      <span class="mdl-list__item-text-body">
+							        Place your content for notification 2 here. Place your content for notification 2 here.
+							      </span>
+							    </span>
+							    <span class="mdl-list__item-secondary-content">
+							      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+							    </span>
+							  </li>
+
+						
+
+							  <li class="mdl-list__item mdl-list__item--three-line">
+							    <span class="mdl-list__item-primary-content">
+							      <i class="material-icons  mdl-list__item-avatar">mail</i>
+							      <span>Notification 3 Title</span>
+							      <span class="mdl-list__item-text-body">
+							        Place your content for notification 3 here. Place your content for notification 3 here. Place your content for notification 3 here.
+							      </span>
+							    </span>
+							    <span class="mdl-list__item-secondary-content">
+							      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+							    </span>
+							  </li>
+							</ul>
+					  </div>
+					  <div class="mdl-card__actions mdl-card--border">
+					    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+					      See All Notifications
+					    </a>
+					  </div>
+					  <!-- If we want to place a menu on the notifications card --> 
+					  <!-- <div class="mdl-card__menu">
+					    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+					      <i class="material-icons">share</i>
+					    </button>
+					  </div> -->
+					</div>
+
+					<!-- Card 2: In Progress --> 
+					<br>
+					<br>
+					<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title">
+					    <h2 class="mdl-card__title-text" id="courses_in_progress_title">Courses in Progress</h2>
+					  </div>
+					  <hr id="courses_in_progress_divider">
+					  <div class="mdl-card__supporting-text">
+
+					    <ul class="demo-list-three mdl-list">
+							  <li class="mdl-list__item mdl-list__item--three-line">
+							    <span class="mdl-list__item-primary-content">
+
+							      <!-- Video image --> 
+							      <img class="video-icon" src='video_placeholder.jpg'></img>
+
+							      <span>Video 1 Title</span>
+							      <span class="mdl-list__item-text-body">
+							        Place your content for video 1 here. 
+							      </span>
+							    </span>
+							    <span class="mdl-list__item-secondary-content">
+							      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+							    </span>
+							  </li>
+
+							  
+
+							  <li class="mdl-list__item mdl-list__item--three-line">
+							    <span class="mdl-list__item-primary-content">
+
+							    	<!-- Video image --> 
+							      <img class="video-icon" src='video_placeholder.jpg'></img>
+
+							      <span>Video 2 Title</span>
+							      <span class="mdl-list__item-text-body">
+							        Place your content for video 2 here. Place your content for video 2 here.
+							      </span>
+							    </span>
+							    <span class="mdl-list__item-secondary-content">
+							      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+							    </span>
+							  </li>
+							</ul>
+
+
+					  </div>
+
+					  <div class="mdl-card__actions mdl-card--border">
+					    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+					      Go to All Your Courses
+					    </a>
+					  </div>
+					  <div class="mdl-card__menu">
+					    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+					      <i class="material-icons">share</i>
+					    </button>
+					  </div>
+					</div>
+
+		    </div>
+		  </main>
+		</div>
+ 
+ </body>
+</html>
+
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  color: #fff;
+	  height: 300px;
+	  background: url('homepage_notifications_bg.jpg') center / cover;
+	  padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64);
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  padding: 0;
+	  float: left;
+	  margin-right: 20px;
+	}
+
+	#courses_in_progress_title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+
+
+</style>
+
+
