@@ -1,5 +1,6 @@
 {% extends "header.html" %}
 {% block main %}
+{% load static %}
 		  <main class="mdl-layout__content">
 		    <div class="page-content">
 
@@ -17,7 +18,7 @@
 
           <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
             <div class="mdl-card__title mdl-card--expand">
-              <img src="course_placeholder.jpg" class = "course-thumbnail">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
               <h2 class="mdl-card__title-text course-thumbnail-title">Course 1</h2>
             </div>
             <div class="mdl-card__supporting-text">
@@ -32,7 +33,7 @@
 
            <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
             <div class="mdl-card__title mdl-card--expand">
-              <img src="course_placeholder.jpg" class = "course-thumbnail">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
               <h2 class="mdl-card__title-text course-thumbnail-title">Course 2</h2>
             </div>
             <div class="mdl-card__supporting-text">
@@ -47,7 +48,7 @@
 
            <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
             <div class="mdl-card__title mdl-card--expand">
-              <img src="course_placeholder.jpg" class = "course-thumbnail">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
               <h2 class="mdl-card__title-text course-thumbnail-title">Course 3</h2>
             </div>
             <div class="mdl-card__supporting-text">
@@ -62,7 +63,7 @@
 
            <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
             <div class="mdl-card__title mdl-card--expand">
-              <img src="course_placeholder.jpg" class = "course-thumbnail">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
               <h2 class="mdl-card__title-text course-thumbnail-title">Course 4</h2>
             </div>
             <div class="mdl-card__supporting-text">
@@ -77,7 +78,7 @@
 
            <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
             <div class="mdl-card__title mdl-card--expand">
-              <img src="course_placeholder.jpg" class = "course-thumbnail">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
               <h2 class="mdl-card__title-text course-thumbnail-title">Course 5</h2>
             </div>
             <div class="mdl-card__supporting-text">
@@ -92,7 +93,7 @@
 
            <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
             <div class="mdl-card__title mdl-card--expand">
-              <img src="course_placeholder.jpg" class = "course-thumbnail">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
               <h2 class="mdl-card__title-text course-thumbnail-title">Course 6</h2>
             </div>
             <div class="mdl-card__supporting-text">
@@ -166,7 +167,6 @@
 
     #search-input {
       width: 90%; 
-
     }
 
     .active {

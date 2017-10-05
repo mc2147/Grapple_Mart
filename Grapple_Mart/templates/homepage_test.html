@@ -1,5 +1,6 @@
 {% extends "header.html" %}
 {% block main %}
+{% load static %}
 		  <!-- MAIN CONTENT --> 
 		  <main class="mdl-layout__content">
 		    <div class="page-content">
@@ -163,7 +164,7 @@
 									    <span class="mdl-list__item-primary-content">
 
 									      <!-- Video image --> 
-									      <img class="video-icon" src='video_placeholder.jpg'></img>
+									      <img class="video-icon" src='{% static 'Home/video_placeholder.jpg' %}'></img>
 
 									      <span>Video 1 Title</span>
 									      <span class="mdl-list__item-text-body">
@@ -180,7 +181,7 @@
 									    <span class="mdl-list__item-primary-content">
 
 									    	<!-- Video image --> 
-									      <img class="video-icon" src='video_placeholder.jpg'></img>
+									      <img class="video-icon" src='{% static 'Home/video_placeholder.jpg' %}'></img>
 
 									      <span>Video 2 Title</span>
 									      <span class="mdl-list__item-text-body">

@@ -12,18 +12,23 @@
   	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
   		<header class = "mdl-layout__header">
     		<div class = "mdl-layout__header-row">
-    			<h1 class = "mdl-layout-title"><a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
+    			<h1 class = "mdl-layout-title">
+                <a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
     			<div class = "mdl-layout-spacer"></div>
-
     			<!-- Where user navigation should be placed --> 
-    			<nav class = "mdl-navigation">
+    			<nav class = "mdl-navigation">                    
+                    <a class = "mdl-navigation__link {% if NBar == 'Market' %}active{% endif %}" href = "/marketplace">
+                    <i class="material-icons">store_mall_directory</i>
+                    </a>
+
     				<a class = "mdl-navigation__link {% if NBar == 'Courses' %}active{% endif %}" href = "/courses">
-            Courses</a>
+                    Courses</a>
     				<a class = "mdl-navigation__link {% if NBar == 'Products' %}active{% endif %}" href = "/products">
-            Purchased Products</a>
+                    Purchased Products</a>
     				<a class = "mdl-navigation__link {% if NBar == 'Social' %}active{% endif %}" href = "/social">
-            Social</a>
-    				<a class = "mdl-navigation__link {% if NBar == 'Home' %}active{% endif %}" href = "/home"><i class="material-icons">account_circle</i></a>
+                    Social</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Home' %}active{% endif %}" href = "/home">
+                    <i class="material-icons">account_circle</i></a>
     			</nav> 
     		</div>
     	</header>

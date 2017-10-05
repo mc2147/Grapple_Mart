@@ -1,5 +1,26 @@
 {% extends "header.html" %}
 {% block main %}
+		    <script>
+		    function check_null() {
+
+		    	var File = document.getElementById("File");
+		        var Required = document.getElementsByClassName('required');
+
+		        if (File.files.length == 0) {
+		            event.preventDefault(); 
+		            alert("Please upload a file for your product!")
+		            return;
+		        }
+		        for (index = 0; index < Required.length; index ++) {
+		            if (Required[index].value == "") {
+		                event.preventDefault();
+		                alert("Please fill in all required fields!");
+		                return;
+		            }
+		        }
+		    }
+		    </script>
+
 		  <!-- MAIN CONTENT --> 
 		  <main class="mdl-layout__content">
 		    <div class="page-content">
@@ -20,65 +41,6 @@
 					  <!-- TAB 1: Notifications --> 
 					  <div class="mdl-tabs__panel" id="view_product">
 
-					    <!-- Card 1: Notifications --> 
-			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-							  <div class="mdl-card__title" id="notifications-card">
-							    <h2 class="mdl-card__title-text">Notifications</h2>
-							  </div>
-							  <div class="mdl-card__supporting-text">
-
-							    <ul class="demo-list-three mdl-list">
-
-							    	<!-- Notification 1 --> 
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-									      <i class="material-icons mdl-list__item-avatar">mail</i>
-									      <span>Notification 1 Title</span>
-									      <span class="mdl-list__item-text-body">
-									        Place your content for notification 1 here. 
-									      </span>
-									    </span>
-									    <span class="mdl-list__item-secondary-content">
-									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
-									    </span>
-									  </li>
-
-									 	<!-- Notification 2 --> 
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-									      <i class="material-icons  mdl-list__item-avatar">mail</i>
-									      <span>Notification 2 Title</span>
-									      <span class="mdl-list__item-text-body">
-									        Place your content for notification 2 here. Place your content for notification 2 here.
-									      </span>
-									    </span>
-									    <span class="mdl-list__item-secondary-content">
-									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
-									    </span>
-									  </li>
-
-									  <!-- Notification 3 --> 
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-									      <i class="material-icons  mdl-list__item-avatar">mail</i>
-									      <span>Notification 3 Title</span>
-									      <span class="mdl-list__item-text-body">
-									        Place your content for notification 3 here. Place your content for notification 3 here. Place your content for notification 3 here.
-									      </span>
-									    </span>
-									    <span class="mdl-list__item-secondary-content">
-									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
-									    </span>
-									  </li>
-									</ul>
-
-							  </div>
-							  <div class="mdl-card__actions mdl-card--border">
-							    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-							      Load More Notifications
-							    </a>
-							  </div>
-							</div>
 					  </div>
 					  <!-- END TAB 1 --> 
 
@@ -89,33 +51,37 @@
 							  <div class="mdl-card__title" id="newsfeed-card">
 							    <h2 class="mdl-card__title-text" id="newsfeed-title">Add Product</h2>
 							  </div>
-
+					        <form method="POST"  enctype="multipart/form-data">{% csrf_token %} 
 							  <hr id="newsfeed-divider">
 							  <div class="mdl-card__supporting-text">
-
-							    <ul class="demo-list-three mdl-list">
-							    Title, File, Description
-							    <br>
 							    Product File: 
-					            <input type="file" style="margin-left:1vw;" name="VideoUpload" id="Video_File">
+					            <input type="file" style="margin-left:1vw;" name="File_Upload" id="File">
 					            <br><br>
 					            Product Type: 
-					            <select style="margin-left:1vw;" name="Product_Type">
-					            <option>Video</option>
-					            <option>E-Book</option>
-					            </select>
+					            <select style="margin-left:1vw; margin-right:0.5vw;" name="Product_Type" class="required">
+						            <option value="">Select Type</option>
+						            <option value="Video">Video Product</option>
+						            <option value="E_Book">E-Book</option>
+					            </select> 
+					            (Required)
+					            <br><br>
+					            Product Title: 
+					            <input style="margin-left:1vw; margin-right:0.5vw; width:15vw;" type="text" 
+					            name="Product_Title" class="required">
+					            (Required)
 							    	<!-- Newsfeed 1 --> 
 					            <br><br>
 					            Description:<br>
-					            <textarea name="Product_Description" rows="4" cols="100">
-					            	
+					            <textarea name="Product_Description" rows="4" cols="100" class="required">
 					            </textarea>
 					            <br><br> 
-					            Price: $ <input type="number" placeholder="0.00"> USD
+					            Price: $ <input name="Price" type="number" placeholder="0.00" step="0.01" class="required"> 
+					            USD (Required)
 					            <br><br>
-					            <input type="submit" value="Add Product">
-					  </div>
-
+					            <input onclick="check_null()" 
+					            type="submit" value="Add Product" name="Add_Product" class="required">
+					  			</div>
+					  		</form>
 					  <!-- TAB 3: Courses in Progress --> 
 					  <div class="mdl-tabs__panel" id="courses-in-progress-panel">
 					    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -180,7 +146,9 @@
  
 	{% endblock main %}
  </body>
+
 </html>
+
 
 {% block style %}
 <style>

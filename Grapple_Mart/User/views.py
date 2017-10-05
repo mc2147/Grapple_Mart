@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.core.files import File
 from django.shortcuts import render
 from models import *
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+import os
 # Create your views here.
 
 def Login(request):
@@ -30,9 +32,134 @@ def Login(request):
 	return render(request, "login.html", context)
 
 def Create_Product(request):
+	for N in Product.objects.all():
+		URL = N.File.url[1:]
+		print(URL)
+		# N.delete()
+		# if os.path.isfile(URL):
+		# 	print("File Found")
+		# 	os.remove(URL)
+		# 	 print("Removed Product File")
 	context = {}
 	context["NBar"] = "Create_Product"
+	if request.POST.get("Add_Product"):
+		_File = request.FILES['File_Upload']
+		Type = request.POST['Product_Type']
+		Title = request.POST['Product_Title']
+		Description = request.POST['Product_Description']
+		Price = float(request.POST['Price'])
+		Django_File = File(_File)
+		print("File: " + Django_File.name)
+		print("Type: " + Type)
+		print("Title: " + Title)
+		print("Description: " + Description)
+		print("Price: " + str(Price))
+		New_Product = Product(File=Django_File, Title=Title, Price=Price, Type=Type)
+		New_Product.save()
+		print("Adding Product")
+		return HttpResponseRedirect("/home")
 	return render(request, "create_product.html", context)
+
+def View_Product(request):
+	context = {}
+	context["NBar"] = "View_Product"
+	context["Product_Title"] = "Product Title"
+	print(request.session["Product_PK"])
+	if "Product_PK" in request.session.keys():
+		print("Product PK: " + str(request.session["Product_PK"]))
+	Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
+	Title = Selected_Product.Title
+	Description = Selected_Product.Description
+	context["Product_Title"] = Title
+	context["Has_Thumbnail"] = Selected_Product.Has_Thumbnail
+	if Selected_Product.Has_Thumbnail:
+		context["Thumbnail_URL"] = Selected_Product.Thumbnail.url
+	context["File_URL"] = Selected_Product.File.url
+	context["Type"] = Selected_Product.Type
+	context["Product_Description"] = Selected_Product.Description
+	context["Price"] = Selected_Product.Price
+
+
+	if request.method == "POST" and False:
+		token = request.POST.get('stripeToken') # Using Flask
+		try:
+			# customer = stripe.Customer.create(
+			# 	source=token,
+			# )
+			# _ID = customer.id
+
+			charge = stripe.Charge.create(
+				amount=Selected_Product.Price*100, 
+			    currency="usd",
+			    description="Purchased Product: " + Selected_Product.Title,
+			    source=token,
+			    # customer=_ID,
+			    )
+			request.session["Product_PK"] = Selected_Product.pk
+		except stripe.error.CardError as ce:
+	        	return False, ce	
+		return HttpResponseRedirect("/download-product")
+
+	if request.method == "POST":
+		print("POST Detected")
+		request.session["Product_PK"] = Selected_Product.pk
+		return HttpResponseRedirect("/download-product")
+
+	return render(request, "view_product.html", context)
+
+def Download_Product(request):
+	context = {}
+	context["NBar"] = "Download_Product"
+
+	if "Product_PK" in request.session.keys():
+		print("Product PK: " + str(request.session["Product_PK"]))
+	Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
+	Title = Selected_Product.Title
+	File_URL = Selected_Product.File.url
+
+	context["Product_Title"] = Title
+	context["File_URL"] = File_URL
+
+	return render(request, "download_product.html", context)
+
+def Marketplace(request):
+	context = {}
+	context["NBar"] = "Market"
+	context["Test"] = True
+	print(context["NBar"])
+	context["Product_Title"] = "Product Title"
+	Sample_List = [1, 2, 3, 4, 5, 6]
+
+	context["Product_Displays"] = []
+
+	for _Product in Product.objects.all():
+		Display_Dict = {}
+		Product_Title = _Product.Title
+		if _Product.Has_Thumbnail:
+			Display_Dict["Thumbnail_URL"] = _Product.Thumbnail.url
+		else:			
+			Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
+		Display_Dict["Product_Title"] = Product_Title
+		Display_Dict["Product_Description"] = _Product.Description
+		Display_Dict["Product_PK"] = _Product.pk
+		context["Product_Displays"].append(Display_Dict)
+
+	if request.GET.get("View_Product"):
+		print(request.GET["Product_PK"])
+		request.session["Product_PK"] = request.GET["Product_PK"]
+		return HttpResponseRedirect("/view-product")
+
+	for N in Sample_List:
+		Display_Dict = {}
+		Product_Title = "Product " + str(N)
+		
+		Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
+
+		Display_Dict["Product_Title"] = Product_Title
+		Display_Dict["Product_Description"] = "Place product " + str(N) + " description here."
+		# context["Product_Displays"].append(Display_Dict)
+	return render(request, "marketplace.html", context)
+
 
 def Home(request):
 	context = {}

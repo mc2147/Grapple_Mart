@@ -17,9 +17,16 @@ class Athlete(models.Model):
 	Name = models.CharField(default="", max_length=100)
 
 class Product(models.Model):
-	Owner = models.OneToOneField(Instructor, default="")
-	Buyers = models.ManyToManyField(Athlete, default="")
+	Owner = models.OneToOneField(Instructor, default="", null=True)
+	Buyers = models.ManyToManyField(Athlete, default="", null=True)
 	Type = models.CharField(default="", max_length=20)
+	Title = models.CharField(default="", max_length=100)
+	Description = models.CharField(default="", max_length=1000)
+	# Price = models.IntegerField(default=0)
+	Price = models.DecimalField(max_digits=10, decimal_places=1, default=0)	
+	File = models.FileField(upload_to='Products', max_length=100, default="")
+	Thumbnail = models.FileField(upload_to='Products/Thumbnails', max_length=100, default="")
+	Has_Thumbnail = models.BooleanField(default=False)
 
 class E_Book(models.Model):
 	Owner = models.OneToOneField(Instructor, default="")
