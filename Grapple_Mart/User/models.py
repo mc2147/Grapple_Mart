@@ -3,11 +3,13 @@ from __future__ import unicode_literals
 from django.db import models
 import datetime
 from django.contrib.auth.models import User, Group
+from tinymce.models import HTMLField
 
 class Instructor(models.Model):
 	User = models.OneToOneField(User)
 	Followers = models.ManyToManyField('Athlete', default="")
 	Name = models.CharField(default="", max_length=100)
+	Bio = HTMLField()
 
 class Athlete(models.Model):
 	User = models.OneToOneField(User)

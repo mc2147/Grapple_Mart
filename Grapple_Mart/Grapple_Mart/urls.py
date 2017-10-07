@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from User.views import *
 
@@ -17,6 +17,11 @@ urlpatterns = [
     url(r'^add-product/', Create_Product, name="Add_Product"),
     url(r'^view-product/', View_Product, name="View_Product"),
     url(r'^download-product/', Download_Product, name="Download_Product"),
+
+    url(r'^test-download/', Test_Download, name="Test_Download"),
+
+    url(r'^instructor-profile/', Instructor_Profile, name="Download_Product"),
+    url(r'^tinymce/', include('tinymce.urls')),
 
 ]
 

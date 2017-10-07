@@ -12,6 +12,9 @@ def Login(request):
 	# context["NBar"] = "Home"
 	if request.GET.get("Log_In"):
 		print("Logging in")
+	
+	for A in Athlete.objects.all():
+		print(A.User.username)
 
 	if request.GET.get("Sign_Up"):
 		print("Signing Up")
@@ -60,6 +63,11 @@ def Create_Product(request):
 		return HttpResponseRedirect("/home")
 	return render(request, "create_product.html", context)
 
+def Instructor_Profile(request):
+	context = {}
+	return render(request, "instructor_profile.html", context)
+
+
 def View_Product(request):
 	context = {}
 	context["NBar"] = "View_Product"
@@ -83,10 +91,6 @@ def View_Product(request):
 	if request.method == "POST" and False:
 		token = request.POST.get('stripeToken') # Using Flask
 		try:
-			# customer = stripe.Customer.create(
-			# 	source=token,
-			# )
-			# _ID = customer.id
 
 			charge = stripe.Charge.create(
 				amount=Selected_Product.Price*100, 
@@ -103,6 +107,7 @@ def View_Product(request):
 	if request.method == "POST":
 		print("POST Detected")
 		request.session["Product_PK"] = Selected_Product.pk
+		# return HttpResponseRedirect("/test-download")
 		return HttpResponseRedirect("/download-product")
 
 	return render(request, "view_product.html", context)
@@ -119,8 +124,23 @@ def Download_Product(request):
 
 	context["Product_Title"] = Title
 	context["File_URL"] = File_URL
+	context["Test_Link"] = "/media/Products/Goblet_Box_Squat_Variations_Bissuht.mp4"
 
 	return render(request, "download_product.html", context)
+
+def Test_Download(request):
+	context = {}
+	if "Product_PK" in request.session.keys():
+		print("Product PK: " + str(request.session["Product_PK"]))
+		Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
+		Title = Selected_Product.Title
+		File_URL = Selected_Product.File.url
+		context["Test_Link"] = File_URL
+		context["File_URL"] = File_URL
+	else:
+		context["Test_Link"] = "/media/Products/Goblet_Box_Squat_Variations_Bissuht.mp4"
+
+	return render(request, "test_download.html", context)
 
 def Marketplace(request):
 	context = {}

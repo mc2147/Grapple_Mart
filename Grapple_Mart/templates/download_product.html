@@ -6,6 +6,21 @@
 		    <div class="page-content">
 		    	<br> <!-- break --> 
 
+			<script type='text/javascript'>
+				function downloadLink(Link) {
+					var link = document.getElementById('test'); 
+					link.setAttribute('href', "{{File_URL}}");
+					link.disabled = true;
+				}
+
+				function cloakLink() {
+					var link = document.getElementById('test'); 
+					setTimeout(function () {
+						link.setAttribute('href', '#');
+						link.setAttribute('disabled', true); 
+					}, 10); 
+				}			
+			</script>
 		    	<!-- TABS --> 
 		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
@@ -25,64 +40,17 @@
 							  <h4>You have purchased <b>{{Product_Title}}</b></h4>
 							  Use the link below to receive your download:
 							  <br><br>
-							  <a href='{{File_URL}}' download>Download Product: <b>{{Product_Title}}</b></a>					  
-							  <!-- <a href='{% static 'Tests/Dead_Bug.mp4' %}' download>Download Product: <b>{{Product_Title}}</b></a> -->
-							  <br><br>
-					  </div>
+
+							 <a href="#" download id='test' onclick='downloadLink(); cloakLink()'> 
+							 Download Product: <b>{{Product_Title}}</b></a>
+							 <br>
+					  	</div>
+					  	</div>
+					 </div>
 
 					  <!-- TAB 3: Courses in Progress --> 
-					  <div class="mdl-tabs__panel" id="courses-in-progress-panel">
-					    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-							  <div class="mdl-card__title">
-							    <h2 class="mdl-card__title-text" id="courses-in-progress-title">Courses in Progress</h2>
-							  </div>
-
-							  <hr id="courses-in-progress-divider">
-							  <div class="mdl-card__supporting-text">
-
-							    <ul class="demo-list-three mdl-list">
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-
-									      <!-- Video image --> 
-									      <img class="video-icon" src='video_placeholder.jpg'></img>
-
-									      <span>Video 1 Title</span>
-									      <span class="mdl-list__item-text-body">
-									        Place your content for video 1 here. 
-									      </span>
-									    </span>
-									    <span class="mdl-list__item-secondary-content">
-									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
-									    </span>
-									  </li>
-									  
-
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-
-									    	<!-- Video image --> 
-									      <img class="video-icon" src='video_placeholder.jpg'></img>
-
-									      <span>Video 2 Title</span>
-									      <span class="mdl-list__item-text-body">
-									        Place your content for video 2 here. Place your content for video 2 here.
-									      </span>
-									    </span>
-									    <span class="mdl-list__item-secondary-content">
-									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
-									    </span>
-									  </li>
-									</ul>
-								</div>
-
-							  <div class="mdl-card__actions mdl-card--border">
-							    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-							      Go to All Your Courses
-							    </a>
-							  </div>
-							</div>
-			    	</div>
+					<div class="mdl-tabs__panel" id="courses-in-progress-panel">
+				    </div>
 			    	<!-- END TAB 3 --> 
 
 		    	</div> 
@@ -95,9 +63,20 @@
 	{% endblock main %}
  </body>
 </html>
+<!-- <link rel="stylesheet" type="text/css" href='{% static 'Tests/test_download_style.css' %}'> -->
+
 
 {% block style %}
 <style>
+
+	body {
+		font-family: 'Helvetica', sans-serif;
+	}
+	a[disabled], a[disabled]:hover {
+	   pointer-events: none;
+	   color: rgba(0, 0, 0, 0.2);
+	   text-decoration: none;
+	}
 
 	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
 		font-family: "Open Sans", sans-serif;
