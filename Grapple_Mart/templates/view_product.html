@@ -1,0 +1,226 @@
+{% extends "header.html" %}
+{% block main %}
+{% load static %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('pk_test_XXOQiKnnXqjJlJG5euwKirzj');
+    var elements = stripe.elements();
+</script>
+		  <!-- MAIN CONTENT --> 
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<br> <!-- break --> 
+
+		    	<!-- TABS --> 
+		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+				  	<br>
+			    	<!-- TABS 2: Newsfeed --> 
+			    	<div class="mdl-tabs__panel is-active" id="add_product">
+					     <!-- Card 2: Newsfeed --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+			    			<a href="/marketplace" style="color:blue; margin-left:1vw;">Back to Marketplace</a>
+							  <div class="mdl-card__title" id="newsfeed-card">
+							    <h2 class="mdl-card__title-text" id="newsfeed-title">Product Details</h2>
+							  </div>
+
+							  <hr id="newsfeed-divider">
+							  <div class="mdl-card__supporting-text">
+							  <form method="GET">
+									  <h3>{{Product_Title}}</h3>
+									  {% if Has_Thumbnail %}
+									  <img height="300" src='{{Thumbnail_URL}}'>
+									  {% else %}
+									  <img height="300" src='{% static 'Home/video_placeholder.jpg' %}'>
+									  {% endif %}
+
+								    <ul class="demo-list-three mdl-list">
+								    <!-- Title, File, Description -->
+								    <br>
+								    <b>Product File:</b>
+								    {{File_URL}}
+						            <br><br>
+						            <b>Product Type: {{Type}}</b>
+						            <br><br>
+						            <b>Description:</b><br>
+						            {{Product_Description}}
+						            <br> 
+						            Price: $ {{Price}} USD
+						            <br>
+							        <form method="POST" id="payment-form">{% csrf_token %}
+								          <div class="form-row">
+								            <label for="card-element">
+								              Credit or Debit card
+								            </label><br><br>
+								            <div id="card-element" style="padding-left:1vw; border-style:solid;">
+								              <!-- a Stripe Element will be inserted here. -->
+								            </div>
+
+								            <!-- Used to display Element errors -->
+								            <div id="card-errors" role="alert"></div>
+								          </div>
+								          <br>
+							            <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
+								        <br>
+								        {{Payment_Status}}
+								        <br>
+							        </form>
+							        <form method="POST">{% csrf_token %}
+							            <input type="submit" name="Buy_Product" value="Buy Product">
+							            <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
+							        </form>
+						            <br>
+							</form>
+					  </div>
+
+					  <!-- TAB 3: Courses in Progress --> 
+					  <div class="mdl-tabs__panel" id="courses-in-progress-panel">
+			    	</div>
+			    	<!-- END TAB 3 --> 
+
+		    	</div> 
+		    	<!-- END TABS --> 
+
+		    </div>
+		  </main>
+		</div>
+		<script>
+		    var style = {
+		      base: {
+		        // Add your base input styles here. For example:
+		        fontSize: '16px',
+		        lineHeight: '24px'
+		      }
+		    };
+
+		    // Create an instance of the card Element
+		    var card = elements.create('card', {style: style});
+
+		    // Add an instance of the card Element into the `card-element` <div>
+		    card.mount('#card-element');
+
+		    card.addEventListener('change', function(event) {
+		      var displayError = document.getElementById('card-errors');
+		      if (event.error) {
+		        displayError.textContent = event.error.message;
+		      } else {
+		        displayError.textContent = '';
+		      }
+		    });
+
+		    var form = document.getElementById('payment-form');
+		    form.addEventListener('submit', function(event) {
+		      event.preventDefault();
+
+		      stripe.createToken(card).then(function(result) {
+		        if (result.error) {
+		          // Inform the user if there was an error
+		          var errorElement = document.getElementById('card-errors');
+		          errorElement.textContent = result.error.message;
+		        } else {
+		          // Send the token to your server
+		          stripeTokenHandler(result.token);
+		        }
+		      });
+		    });
+
+		    function stripeTokenHandler(token) {
+		      // Insert the token ID into the form so it gets submitted to the server
+		      var form = document.getElementById('payment-form');
+		      var hiddenInput = document.createElement('input');
+		      hiddenInput.setAttribute('type', 'hidden');
+		      hiddenInput.setAttribute('name', 'stripeToken');
+		      hiddenInput.setAttribute('value', token.id);
+		      form.appendChild(hiddenInput);
+
+		      // Submit the form
+		      form.submit();
+		    }
+		</script>
+ 
+	{% endblock main %}
+
+ </body>
+</html>
+
+{% block style %}
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  color: #fff;
+	  height: 300px;
+	  background: url('homepage_notifications_bg.jpg') center / cover;
+	  padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  padding: 0;
+	  float: left;
+	  margin-right: 20px;
+	}
+
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+</style>
+	{% endblock style %}

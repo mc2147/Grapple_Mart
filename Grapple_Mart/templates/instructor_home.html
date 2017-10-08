@@ -1,0 +1,288 @@
+{% extends "instructor_header.html" %}
+{% block main %}
+{% load static %}
+		    <script>
+		    function check_null() {
+		    	var File = document.getElementById("File");
+		        var Required = document.getElementsByClassName('required');
+		        if (File.files.length == 0) {
+		            event.preventDefault(); 
+		            alert("Please upload a file for your product!")
+		            return;
+		        }
+		        for (index = 0; index < Required.length; index ++) {
+		            if (Required[index].value == "") {
+		                event.preventDefault();
+		                alert("Please fill in all required fields!");
+		                return;
+		            }
+		        }
+		    }
+		    </script>
+
+		  <!-- MAIN CONTENT --> 
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<br> <!-- break --> 
+
+		    	<!-- TABS --> 
+		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+		    		<!-- TABS HEADER --> 
+				  	<div class="mdl-tabs__tab-bar">
+				      
+<!-- 				      <input href="#notifications-panel" type="submit" class="mdl-tabs__tab {% if Tab == 'Notifications' %}is-active{% endif %}"
+				      value="Notifications">
+ -->
+				      <a href="#notifications-panel" class="mdl-tabs__tab {% if Tab == 'Notifications' %}is-active{% endif %}">Notifications</a>
+				      <a href="#add-product" class="mdl-tabs__tab {% if Tab == 'Add_Product' %}is-active{% endif %}">
+				      Add Product</a>
+				      <a href="#create-course" class="mdl-tabs__tab {% if Tab == 'Create_Course' %}is-active{% endif %}">
+				      Create Course</a>
+				  	</div>
+
+				  	<br>
+					  <div class="mdl-tabs__panel {% if Tab == 'Notifications' %}is-active{% endif %}" id="notifications-panel">
+					    <!-- Card 1: Notifications --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+							  <div class="mdl-card__title" id="notifications-card" style="height:auto;">
+							    <h2 class="mdl-card__title-text">Notifications</h2>
+							  </div>
+							  <div class="mdl-card__supporting-text">
+							    <ul class="demo-list-three mdl-list">
+
+							    	<!-- Notification 1 --> 
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+									      <i class="material-icons mdl-list__item-avatar">mail</i>
+									      <span>Notification 1 Title</span>
+									      <span class="mdl-list__item-text-body">
+									        Place your content for notification 1 here. 
+									      </span>
+									    </span>
+									    <span class="mdl-list__item-secondary-content">
+									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+									    </span>
+									  </li>
+
+									 	<!-- Notification 2 --> 
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+									      <i class="material-icons  mdl-list__item-avatar">mail</i>
+									      <span>Notification 2 Title</span>
+									      <span class="mdl-list__item-text-body">
+									        Place your content for notification 2 here. Place your content for notification 2 here.
+									      </span>
+									    </span>
+									    <span class="mdl-list__item-secondary-content">
+									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+									    </span>
+									  </li>
+
+									  <!-- Notification 3 --> 
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+									      <i class="material-icons  mdl-list__item-avatar">mail</i>
+									      <span>Notification 3 Title</span>
+									      <span class="mdl-list__item-text-body">
+									        Place your content for notification 3 here. Place your content for notification 3 here. Place your content for notification 3 here.
+									      </span>
+									    </span>
+									    <span class="mdl-list__item-secondary-content">
+									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+									    </span>
+									  </li>
+									</ul>
+									  <!-- Notification 3 --> 
+							  </div>
+							  <div class="mdl-card__actions mdl-card--border">
+							  <form method="GET" name="Next_Product_Display">
+							    <input class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+							    name="Next_Notifications"
+							    type="submit" value ="LOAD MORE NOTIFICATIONS">
+							  </form>
+							  </div>
+							</div>
+						</div>
+			    	<!-- TABS 2: Newsfeed --> 
+			    	<div class="mdl-tabs__panel {% if Tab == 'Add_Product' %}is-active{% endif %}" id="add-product">
+					     <!-- Card 2: Newsfeed --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+							  <div class="mdl-card__title" id="add-product">
+							    <h2 class="mdl-card__title-text" id="newsfeed-title">Add Product</h2>
+							  </div>
+					        <form method="POST"  enctype="multipart/form-data">{% csrf_token %} 
+							  <hr id="newsfeed-divider">
+							  <div class="mdl-card__supporting-text">
+							    Product File: 
+					            <input type="file" style="margin-left:1vw;" name="File_Upload" id="File">
+					            <br><br>
+					            Product Type: 
+					            <select style="margin-left:1vw; margin-right:0.5vw;" name="Product_Type" class="required">
+						            <option value="">Select Type</option>
+						            <option value="Video">Video Product</option>
+						            <option value="E_Book">E-Book</option>
+					            </select> 
+					            (Required)
+					            <br><br>
+					            Product Title: 
+					            <input style="margin-left:1vw; margin-right:0.5vw; width:15vw;" type="text" 
+					            name="Product_Title" class="required">
+					            (Required)
+							    	<!-- Newsfeed 1 --> 
+					            <br><br>
+					            Description:<br>
+					            <textarea name="Product_Description" rows="4" cols="100" class="required">
+					            </textarea>
+					            <br><br> 
+					            Price: $ <input name="Price" type="number" placeholder="0.00" step="0.01" class="required"> 
+					            USD (Required)
+					            <br><br>
+					            <input onclick="check_null()" 
+					            type="submit" value="Add Product" name="Add_Product" class="required">
+					  			</div>
+					  		</form>
+							  <div class="mdl-card__actions mdl-card--border">
+							  <form method="GET" name="Next_Product_Display">
+							    <input onclick="check_null()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+							    name="Add_Product_Next"
+							    type="submit" value ="Next &nbsp >> &nbsp Product Display">
+							  </form>
+							  </div>
+							</div>
+					  </div>
+					  <!-- END TAB 2 --> 
+
+					  <!-- TAB 3: Courses in Progress --> 
+					  <div class="mdl-tabs__panel {% if Tab == 'Create_Course' %}is-active{% endif %}" id="create-course">
+					    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+							  <div class="mdl-card__title">
+							    <h2 class="mdl-card__title-text" id="courses-in-progress-title">Create Course</h2>
+							  </div>
+					        <!-- <form method="POST"  enctype="multipart/form-data">{% csrf_token %}  -->
+							  <form method="GET" name="Next_Create_Course">
+							  <hr id="newsfeed-divider">
+							  <div class="mdl-card__supporting-text">
+					            Course Title: 
+					            <input style="margin-left:1vw; margin-right:0.5vw; width:15vw;" type="text" 
+					            name="Course_Title" class="course_required">
+					            (Required)
+					            <br><br>
+					            Course Description:
+					            <br>
+					            <textarea name="Course_Description" rows="4" cols="100" class="course_required">
+					            </textarea>
+					            <br><br> 
+					            Course Topic: 
+					            <select name="Course_Topic">
+						            <option value="Guard Passing">Guard Passing</option>
+						            <option value="Guard Retention">Guard Retention</option>
+						            <option value="Submissions">Submissions</option>
+						            <option value="Other">Other</option>
+					            </select>
+					            <br>
+					            <span style="font-size:10px;">What is this course about?</span>
+					  			</div>
+					  		<!-- </form> -->
+
+							  <div class="mdl-card__actions mdl-card--border">
+							    <input class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+							    name="Create_Course_Next"
+							    type="submit" value ="Next &nbsp >> &nbsp Add Course Content">
+							  </form>
+							  </div>
+							</div>
+			    	</div>
+			    	<!-- END TAB 3 --> 
+
+		    	</div> 
+		    	<!-- END TABS --> 
+
+		    </div>
+		  </main>
+		</div>
+ 
+	{% endblock main %}
+ </body>
+</html>
+
+{% block style %}
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  color: #fff;
+	  height: 300px;
+	  background: url('homepage_notifications_bg.jpg') center / cover;
+	  padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  padding: 0;
+	  float: left;
+	  margin-right: 20px;
+	}
+
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+</style>
+	{% endblock style %}

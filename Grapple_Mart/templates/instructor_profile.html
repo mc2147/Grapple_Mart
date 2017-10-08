@@ -1,0 +1,221 @@
+{% extends "instructor_header.html" %}
+{% block main %}
+{% load static %}
+		  <!-- MAIN CONTENT --> 
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<br> <!-- break --> 
+
+		    	<!-- TABS --> 
+		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+		    		<!-- TABS HEADER --> 
+				  	<div class="mdl-tabs__tab-bar">
+				      <a href="#profile" class="mdl-tabs__tab is-active">Profile</a>
+				      <a href="#highlights" class="mdl-tabs__tab">Highlights</a>
+				      <a href="#products" class="mdl-tabs__tab">Products</a>
+				      <a href="#schedule" class="mdl-tabs__tab">Schedule</a>
+				  	</div>
+
+				  	<br>
+
+					  <div class="mdl-tabs__panel is-active" id="profile">
+					    <!-- Card 1: Notifications --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+							  <div class="mdl-card__title" id="notifications-card">
+							    <h2 class="mdl-card__title-text">Your Profile</h2>
+							  </div>
+							  <div class="mdl-card__supporting-text">
+
+							    	<!-- Notification 1 --> 
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+					                      <i class="material-icons mdl-list__item-avatar" 
+					                      style="font-size:100px; margin-bottom:30px; margin-top:-30px; margin-right:50px;">person</i>
+									      <br><br><br>
+									      Edit Profile Picture: <input style="margin-bottom:0px; margin-left:2vw;" type="file">
+									    </span>
+									  </li>
+									  {{Bio_Form}}
+									 	<!-- Notification 2 --> 
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+									    <br>
+									    Bio:<br>
+
+										    <textarea rows="4" cols="100">Bio</textarea>
+										    <br>
+										    <input type="submit" value="Save">
+										    <br><br>
+									    Awards & Accomplishments:<br>
+										    <textarea rows="4" cols="100">Rich Text Editor</textarea>
+										    <br>
+										    <input type="submit" value="Save">
+										    <br><br>
+										    Gym Name:<input type="text" style="margin-left:2vw;" placeholder="Enter Gym Name">
+										    <br><br>
+										    Team/Affiliation:<input type="text" style="margin-left:2vw;" placeholder="Enter Team Name">
+										    <br>
+										    <br>
+									  </li>
+
+									  <!-- Notification 3 --> 
+							  </div>
+							</div>
+						</div>
+					  <div class="mdl-tabs__panel" id="highlights">
+					    <!-- Card 1: Notifications --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+							  <div class="mdl-card__title" id="notifications-card">
+							    <h2 class="mdl-card__title-text">Highlights</h2>
+							  </div>
+							  	<div class="mdl-card__supporting-text">
+							    	<!-- Notification 1 --> 
+									 	<!-- Notification 2 --> 
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+									    <br>
+									    Image and Video Gallery here
+									    <br><br>
+									    Featured Products
+									    <br><br>
+									    Awards & Accomplishments:<br>
+										    <textarea rows="4" cols="100">Rich Text Editor</textarea>
+										    <br>
+										    <input type="submit" value="Save">
+										    <br><br>
+										     Upload Highlight Video: <input style="margin-bottom:0px; margin-left:2vw;" type="file">
+										</span>
+									  </li>
+
+									  <!-- Notification 3 --> 
+							  </div>
+							</div>
+						</div>
+					  <div class="mdl-tabs__panel" id="schedule">
+						    <!-- Card 1: Notifications --> 
+				    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+								  <div class="mdl-card__title" id="notifications-card">
+								    <h2 class="mdl-card__title-text">Scheduling</h2>
+								  </div>
+								  	<div class="mdl-card__supporting-text">
+								    	<!-- Notification 1 --> 
+										 	<!-- Notification 2 --> 
+										  <li class="mdl-list__item mdl-list__item--three-line">
+										    <span class="mdl-list__item-primary-content">
+										    <br>
+										    Calendar here to schedule training sessions, seminars and private sessions
+										    <br><br>
+										    Mark availabilities
+										    <br><br>
+										  </span>
+										  </li>
+										  <!-- Notification 3 --> 
+								  </div>
+								</div>
+							</div>
+
+						  <div class="mdl-tabs__panel" id="products">
+						    <!-- Card 1: Notifications --> 
+				    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+								  <div class="mdl-card__title" id="notifications-card">
+								    <h2 class="mdl-card__title-text">Products</h2>
+								  </div>
+								  	<div class="mdl-card__supporting-text">
+								    	<!-- Notification 1 --> 
+										 	<!-- Notification 2 --> 
+										 List of products here
+										  <!-- Notification 3 --> 
+								  </div>
+								</div>
+
+							</div>
+
+
+			    	</div>
+			   </div>
+		  </main>
+	{% endblock main %}
+ </body>
+</html>
+
+{% block style %}
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  color: #fff;
+	  /*height: 300px;*/
+	  background: url('homepage_notifications_bg.jpg') center / cover;
+	  padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  padding: 0;
+	  float: left;
+	  margin-right: 20px;
+	}
+
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+</style>
+	{% endblock style %}

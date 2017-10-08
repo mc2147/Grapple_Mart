@@ -1,0 +1,166 @@
+{% extends "header.html" %}
+{% block main %}
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+
+          <!-- Friends --> 
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp" id="friends-card">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Friends</h2>
+            </div>
+            <hr class="title-divider">
+            <div class="mdl-card__supporting-text">
+     
+               <ul class="demo-list-two mdl-list">
+                  <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-avatar">person</i>
+
+                      <span>Friend 1 Name</span>
+                      <span class="mdl-list__item-sub-title">Friend 1 Description</span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">insert_comment</i></a>
+                    </span>
+                  </li>
+                  <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-avatar">person</i>
+                      <span>Friend 2 Name</span>
+                      <span class="mdl-list__item-sub-title">Friend 2 Description</span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">insert_comment</i></a>
+                    </span>
+                  </li>
+                  <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-avatar">person</i>
+                      <span>Friend 3 Name</span>
+                      <span class="mdl-list__item-sub-title">Friend 3 Description</span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">insert_comment</i></a>
+                    </span>
+                  </li>
+                </ul>
+    
+
+
+            </div>
+           <!--  <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </a>
+            </div> -->
+            <!-- <div class="mdl-card__menu">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+              </button>
+            </div> -->
+          </div>
+
+          <!-- Followers --> 
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp" id="followers-card">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Followers or Following</h2>
+            </div>
+
+            <hr class="title-divider">
+
+            <div class="mdl-card__supporting-text">
+
+              <ul class="demo-list-two mdl-list">
+                <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-avatar">person</i>
+
+                    <span>Name 1</span>
+                    <span class="mdl-list__item-sub-title">Description 1</span>
+                  </span>
+                  <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">insert_comment</i></a>
+                  </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-avatar">person</i>
+                    <span>Name 2</span>
+                    <span class="mdl-list__item-sub-title">Description 2</span>
+                  </span>
+                  <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">insert_comment</i></a>
+                  </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-avatar">person</i>
+                    <span>Name 3</span>
+                    <span class="mdl-list__item-sub-title">Description 3</span>
+                  </span>
+                  <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">insert_comment</i></a>
+                  </span>
+                </li>
+              </ul>
+              
+            </div>
+          </div>
+
+		    </div>
+		  </main>
+		</div>
+ 
+ {% endblock main %}
+
+{% block style %}
+
+<style>
+
+    body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+      font-family: "Open Sans", sans-serif;
+    }
+
+    #page-title-link {
+      text-decoration: none; 
+      color: white; 
+    }
+
+    .mdl-layout__title, .mdl-layout-title, .mdl-textfield__input {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .mdl-layout__drawer-button .material-icons {
+        margin-top: 25%;
+    }
+
+    .page-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 5%;
+    }
+
+    .mdl-card__title {
+      color: rgb(63, 81, 181); /* indigo */ 
+    }
+
+    .title-divider {
+      margin: 0;
+    }
+
+    #friends-card {
+      width: 60%;
+    }
+
+    #followers-card {
+      width: 30%; 
+    }
+
+    .active {
+      text-decoration: underline; 
+      text-underline-position: under;
+      color: white;
+    }
+</style>
+ {% endblock style %}

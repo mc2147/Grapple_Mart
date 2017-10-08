@@ -1,0 +1,155 @@
+<html>
+ 	<head>
+  	<!-- Material Design Theme --> 
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script> 
+
+ </head>
+ 
+ <body>
+  	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  		<header class = "mdl-layout__header">
+    		<div class = "mdl-layout__header-row">
+    			<h1 class = "mdl-layout-title"><a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
+    			<div class = "mdl-layout-spacer"></div>
+
+    			<!-- Where user navigation should be placed --> 
+    			<nav class = "mdl-navigation">
+    				<a class = "mdl-navigation__link" href = "courses.html">Courses</a>
+    				<a class = "mdl-navigation__link active" href = "purchased_products.html">Purchased Products</a>
+    				<a class = "mdl-navigation__link" href = "social.html">Social</a>
+    				<a class = "mdl-navigation__link" href = ""><i class="material-icons">account_circle</i></a>
+    			</nav> 
+    		</div>
+    	</header>
+
+    	<div class="mdl-layout__drawer">
+    		<!-- Where global navigation should be placed --> 
+		    <span class="mdl-layout-title">Navigation</span>
+		    <nav class="mdl-navigation">
+		      <a class="mdl-navigation__link" href="">Home</a>
+		      <a class="mdl-navigation__link" href="">About</a>
+		      <a class="mdl-navigation__link" href="">Contact</a>
+		    </nav>
+		  </div>
+
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+
+          <form action="#" id='search-input'>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+              <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="sample6">
+                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+              </div>
+            </div>
+          </form>
+
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp product-card">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Product 1 Name</h2>
+            </div>
+            <hr class="title-divider">
+            <div class="mdl-card__supporting-text">
+              <p>Place Product 1 content here.</p>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </a>
+            </div>
+            <!-- <div class="mdl-card__menu">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+              </button>
+            </div> -->
+          </div>
+
+          <div class="demo-card-wide mdl-card mdl-shadow--2dp product-card">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Product 2 Name</h2>
+            </div>
+            <hr class="title-divider">
+            <div class="mdl-card__supporting-text">
+              <p>Place Product 2 content here.</p>
+              <p>Place Product 2 content here.</p>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Get Started
+              </a>
+            </div>
+            <!-- <div class="mdl-card__menu">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+              </button>
+            </div> -->
+          </div>
+		   
+		  
+		    </div>
+		  </main>
+		</div>
+ 
+ </body>
+</html>
+
+<style>
+    body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+      font-family: "Open Sans", sans-serif;
+    }
+
+    #page-title-link {
+      text-decoration: none; 
+      color: white; 
+    }
+
+    .mdl-layout__title, .mdl-layout-title, .mdl-textfield__input {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .mdl-layout__drawer-button .material-icons {
+        margin-top: 25%;
+    }
+
+    .page-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 2%;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      width: 90%;
+      margin-bottom: 2.5%;
+      font-size: 1vw;
+    }
+
+    #search-input {
+      width: 90%; 
+
+    }
+
+    .mdl-card__title {
+      color: rgb(63, 81, 181); /* indigo */ 
+    }
+
+    .title-divider {
+      margin: 0;
+    }
+
+    .active {
+      text-decoration: underline; 
+      text-underline-position: under;
+      color: white;
+    }
+
+
+</style>
+

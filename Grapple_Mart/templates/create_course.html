@@ -1,0 +1,327 @@
+{% extends "instructor_header.html" %}
+{% block main %}
+
+			<style>
+			  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+			  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; }
+			  #sortable li span { position: absolute; margin-left: -1.3em; }
+			  </style>
+			  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+			  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+			  <script>
+			  $( function() {
+			    $( "#sortable" ).sortable();
+			    $( "#sortable" ).disableSelection();
+			  } );
+			</script>
+
+  		    <script>
+		    function check_null() {
+
+		    	var File = document.getElementById("File");
+		        var Required = document.getElementsByClassName('required');
+
+		        if (File.files.length == 0) {
+		            event.preventDefault(); 
+		            alert("Please upload a file for your product!")
+		            return;
+		        }
+		        for (index = 0; index < Required.length; index ++) {
+		            if (Required[index].value == "") {
+		                event.preventDefault();
+		                alert("Please fill in all required fields!");
+		                return;
+		            }
+		        }
+		    }
+		    function Get_Course_Items() {
+		    	var Item_List = []
+		        var Items = document.getElementsByClassName('Course_Item');
+		    	var Course_Item_Input = document.getElementById("Course_Items");
+		        for (index = 0; index < Items.length; index ++) {
+		        	Item_List.push(Items[index].value)
+		        }
+		        
+		        Course_Item_Input.value = Item_List
+
+		    }
+
+		    </script>
+
+		  <!-- MAIN CONTENT --> 
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<br> <!-- break --> 
+
+		    	<!-- TABS --> 
+		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+				  	<br>
+
+					  <!-- TAB 1: Notifications --> 
+					  <div class="mdl-tabs__panel" id="view_product">
+
+					  </div>
+					  <!-- END TAB 1 --> 
+
+			    	<!-- TABS 2: Newsfeed --> 
+			    	<div class="mdl-tabs__panel is-active" id="add_product">
+					     <!-- Card 2: Newsfeed --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="border-style:solid;">
+							  <div class="mdl-card__title" id="newsfeed-card">
+							    <h2 class="mdl-card__title-text" id="newsfeed-title">Create Course</h2>
+							  </div>
+							  <hr id="newsfeed-divider">
+							<div style="display:table-row; border-style:solid; height:800px;">
+							<div style="width:210px; height:100%; border-style:solid; display:table-cell; float:right; margin:0px;
+							padding-top:0vw; padding-bottom:1vw; padding-left:1vw; margin-left:1vw;">		
+						        <form method="GET">
+								Course Details
+								<br>
+								<b>Title:</b> {{Course_Title}}
+								<br>
+								<b>Description:</b> {{Course_Description}}
+								<br>
+								<b>Price:</b>
+								<br>
+
+							        <input style="margin-top:1vw;" 
+						            type="submit" value="Confirm & Create Course" name="Create_Course" class="required">
+						        </form>
+
+							</div>
+							<div style="width:210px; height:100%; border-style:solid; display:table-cell; float:right; margin:0px;
+							padding-top:0vw; padding-bottom:1vw;">		
+							<span style="margin-left:0.25vw; font-size:10px;">Drag & Drop to order course items</span> 			
+							<div style="width:auto; height:85%; overflow-y:scroll; overflow-x:none;">		
+						        <form method="GET">
+								<ul id="sortable" style="width:100%; margin-right:0px;">
+										{%for Item in Course_Items %}
+										<li class="ui-state-default" 
+										  style="height:auto; width:100%; border-top:solid; border-bottom:solid; 
+										  border-color:black; padding-left:0px;
+										  margin-left:0px; margin:0px;">
+										  <input hidden value="{{Item.PK}}" class="Course_Item">
+							                <div class="thumbnail_container" style="height:8vw; font-size:1vw; margin-bottom:0px; margin-left:0.5vw; margin-right:0.5vw;">
+							                {{Item.Title}} {{Item.Ordered_ID}}
+							                    <image type="image" name="Placeholder" src="{{Video_Thumbnail}}" 
+							                    alt="Show Video" value=""
+							                    style="width:100%; height:6vw; border-style:solid; margin-top:0px;"/>
+							                    </image>
+							                </div>
+							            </li>
+										{% endfor %}
+<!-- 						                {%for Row in Videos %}
+										<li class="ui-state-default" 
+										  style="height:auto; width:100%; border-top:solid; border-bottom:solid; 
+										  border-color:black; padding-left:0px;
+										  margin-left:0px; margin:0px;">
+										  <input hidden value="{{Row}}" class="Course_Item">
+							                <div class="thumbnail_container" style="height:8vw; font-size:1vw; margin-bottom:0px; margin-left:0.5vw; margin-right:0.5vw;">
+							                Video {{Row}}
+							                    <image type="image" name="Placeholder" src="{{Video_Thumbnail}}" 
+							                    alt="Show Video" value=""
+							                    style="width:100%; height:6vw; border-style:solid; margin-top:0px;"/>
+							                    </image>
+							                </div>
+							            </li>
+						                {% endfor %}		
+ -->								</ul>
+						        </form>
+					        </div>					        
+						        <form method="GET">
+							        <input onclick="Get_Course_Items();" style="margin-top:1vw;" 
+						            type="submit" value="Save Item Order" name="Save_Order" class="required">
+						            <input hidden value="Test" id="Course_Items" name="Course_Items">
+						        </form>
+						    </div>
+						    <!-- </div> -->
+							<div style="width:50%; height:auto; border-style:solid; display:table-cell; float:left; margin:0px;">
+					        <form method="POST"  enctype="multipart/form-data">{% csrf_token %} 
+							  <div class="mdl-card__supporting-text">
+					        	Add a set of pdfs and videos for your course!
+					        	<br> 
+					        	<span style="font-size:10px;">Accepted file extensions: pdf, mp4, avi</span>
+					        	<br><br>
+							    File: 
+					            <input type="file" style="margin-left:1vw;" name="File_Upload" id="File">
+					            <br><br>
+					            Type: 
+					            <select style="margin-left:1vw; margin-right:0.5vw;" name="Item_Type" class="required">
+						            <option value="">Select Type</option>
+						            <option value="Video">Video</option>
+						            <option value="E_Book">E-Book</option>
+					            </select> 
+					            (Required)
+					            <br><br>
+					            Item Title: 
+					            <input style="margin-left:1vw; margin-right:0.5vw; width:15vw;" type="text" 
+					            name="Item_Title" class="required">
+					            (Required)
+					            <br>
+					            <span style="font-size:10px;">This will be displayed at the top of the item on the user-side</span>
+							    	<!-- Newsfeed 1 --> 
+					            <br><br>
+					            Description/Notes:<br>
+					            <span style="font-size:10px;">Write any description or notes you want the user to see when viewing this item here</span>
+					            <textarea name="Item_Description" rows="4" cols="100" class="required">
+					            </textarea>
+					            <br><br>
+					            <input type="submit" value="Add Item" name="Add_Item" class="required">
+					            <input hidden value="Test" id="Add_Item" name="Add_Item">
+<!-- check_null();  -->
+					  			</div>
+					  		</form>
+					  		</div>
+					  		</div>
+							</div>
+					  	</div>
+					  <!-- TAB 3: Courses in Progress --> 
+					  <div class="mdl-tabs__panel" id="courses-in-progress-panel">
+					    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+							  <div class="mdl-card__title">
+							    <h2 class="mdl-card__title-text" id="courses-in-progress-title">Courses in Progress</h2>
+							  </div>
+
+							  <hr id="courses-in-progress-divider">
+							  <div class="mdl-card__supporting-text">
+
+							    <ul class="demo-list-three mdl-list">
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+
+									      <!-- Video image --> 
+									      <img class="video-icon" src='video_placeholder.jpg'></img>
+
+									      <span>Video 1 Title</span>
+									      <span class="mdl-list__item-text-body">
+									        Place your content for video 1 here. 
+									      </span>
+									    </span>
+									    <span class="mdl-list__item-secondary-content">
+									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+									    </span>
+									  </li>
+									  
+
+									  <li class="mdl-list__item mdl-list__item--three-line">
+									    <span class="mdl-list__item-primary-content">
+
+									    	<!-- Video image --> 
+									      <img class="video-icon" src='video_placeholder.jpg'></img>
+
+									      <span>Video 2 Title</span>
+									      <span class="mdl-list__item-text-body">
+									        Place your content for video 2 here. Place your content for video 2 here.
+									      </span>
+									    </span>
+									    <span class="mdl-list__item-secondary-content">
+									      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">keyboard_arrow_right</i></a>
+									    </span>
+									  </li>
+									</ul>
+								</div>
+
+							  <div class="mdl-card__actions mdl-card--border">
+							    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+							      Go to All Your Courses
+							    </a>
+							  </div>
+							</div>
+			    	</div>
+			    	<!-- END TAB 3 --> 
+
+		    	</div> 
+		    	<!-- END TABS --> 
+
+		    </div>
+		  </main>
+		</div>
+ 
+	{% endblock main %}
+ </body>
+
+</html>
+
+
+{% block style %}
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  color: #fff;
+	  height: 300px;
+	  background: url('homepage_notifications_bg.jpg') center / cover;
+	  padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  padding: 0;
+	  float: left;
+	  margin-right: 20px;
+	}
+
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+</style>
+	{% endblock style %}

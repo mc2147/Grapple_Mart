@@ -1,0 +1,180 @@
+{% extends "header.html" %}
+{% block main %}
+{% load static %}
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+
+           <form action="#" id='search-input'>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+              <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="sample6">
+                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+              </div>
+            </div>
+          </form>
+
+          <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
+            <div class="mdl-card__title mdl-card--expand">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
+              <h2 class="mdl-card__title-text course-thumbnail-title">Course 1</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Place course 1 description here.  
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Course
+              </a>
+            </div>
+          </div>
+
+           <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
+            <div class="mdl-card__title mdl-card--expand">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
+              <h2 class="mdl-card__title-text course-thumbnail-title">Course 2</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Place course 2 description here.  
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Course
+              </a>
+            </div>
+          </div>
+
+           <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
+            <div class="mdl-card__title mdl-card--expand">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
+              <h2 class="mdl-card__title-text course-thumbnail-title">Course 3</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Place course 3 description here.  
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Course
+              </a>
+            </div>
+          </div>
+
+           <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
+            <div class="mdl-card__title mdl-card--expand">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
+              <h2 class="mdl-card__title-text course-thumbnail-title">Course 4</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Place course 4 description here.  
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Course
+              </a>
+            </div>
+          </div>
+
+           <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
+            <div class="mdl-card__title mdl-card--expand">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
+              <h2 class="mdl-card__title-text course-thumbnail-title">Course 5</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Place course 5 description here.  
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Course
+              </a>
+            </div>
+          </div>
+
+           <div class="demo-card-square mdl-card mdl-shadow--2dp course-card">
+            <div class="mdl-card__title mdl-card--expand">
+              <img src='{% static 'Placeholders/course_placeholder.jpg' %}' class = "course-thumbnail">
+              <h2 class="mdl-card__title-text course-thumbnail-title">Course 6</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Place course 6 description here.  
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Course
+              </a>
+            </div>
+          </div>
+		   
+		  
+		    </div>
+		  </main>
+		</div>
+ {% endblock main %}
+
+{% block style %}
+<style>
+
+    body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+      font-family: "Open Sans", sans-serif;
+    }
+
+    #page-title-link {
+      text-decoration: none; 
+      color: white; 
+    }
+
+    .mdl-layout__title, .mdl-layout-title, .mdl-textfield__input {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .mdl-layout__drawer-button .material-icons {
+        margin-top: 25%;
+    }
+
+    .page-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 2%;
+      flex-wrap: wrap;
+    }
+
+    .course-card {
+      width: 28%;
+      margin: 1%;
+      margin-bottom: 4%;
+      font-size: 1vw;
+    }
+
+    .course-card h2 {
+      font-size: 2vw;
+    }
+
+    .course-thumbnail {
+      width: 100%; 
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0.1vw;
+    }
+
+    .course-thumbnail-title {
+      width: calc(100% - 41px);
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4); 
+      position: absolute;
+      padding-left: 10px;
+    }
+
+    #search-input {
+      width: 90%; 
+    }
+
+    .active {
+      text-decoration: underline; 
+      text-underline-position: under;
+      color: white;
+    }
+
+
+</style>
+ {% endblock style %}

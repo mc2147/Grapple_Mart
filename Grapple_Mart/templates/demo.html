@@ -1,0 +1,209 @@
+<html>
+ 	<head>
+  	<!-- Material Design Theme --> 
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script> 
+
+ </head>
+ 
+ <body>
+
+ 		<!-- BODY --> 
+  	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  		<!-- HEADER + NAV --> 
+  		<header class = "mdl-layout__header">
+    		<div class = "mdl-layout__header-row">
+    			<h1 class = "mdl-layout-title"><a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
+    			<div class = "mdl-layout-spacer"></div>
+
+    			<!-- Where user navigation should be placed --> 
+    			<nav class = "mdl-navigation">
+    			</nav> 
+    		</div>
+    	</header>
+
+    	<div class="mdl-layout__drawer">
+    		<!-- Where global navigation should be placed --> 
+		    <span class="mdl-layout-title">Navigation</span>
+		    <nav class="mdl-navigation">
+		      <a class="mdl-navigation__link" href="">Home</a>
+		      <a class="mdl-navigation__link" href="">About</a>
+		      <a class="mdl-navigation__link" href="">Contact</a>
+		    </nav>
+		  </div>
+		  <!-- END HEADER + NAV --> 
+
+		  <!-- MAIN CONTENT --> 
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    	<br> <!-- break --> 
+
+		    	<!-- TABS --> 
+		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+		    		<!-- TABS HEADER --> 
+
+				  	<br>
+
+					  <!-- TAB 1: Notifications --> 
+					  <!-- <div class="mdl-tabs__panel" id="log-in"> -->
+					  <div class="mdl-tabs__panel is-active" id="log-in">
+
+					    <!-- Card 1: Notifications --> 
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width:50%; height:60%;">
+							  <div class="mdl-card__title" style="text-align:center !important;" id="newsfeed-card">
+							    <h2 class="mdl-card__title-text" id="newsfeed-title" style="margin:auto;">Coming Soon!</h2>
+							  </div>
+
+							  <!-- <hr id="newsfeed-divider"> -->
+							  <!-- Test -->
+							  <div id="login-div" style="margin:auto; width:30vw; font-size:1vw; padding-top:3vw; margin-bottom:25vh;">
+							<form method="POST">{% csrf_token %}
+<!-- 								  Enter Your Email To Stay Updated:<br>
+								  <input type="text" name="Username" placeholder="Enter Email Address" style="font-size:1.5vw; width:100%; margin:auto; margin-bottom:6vh;">
+								  <br>
+ -->
+<!-- 								  <input type="submit" name="Log_In" value="Log In" style="width:25%; margin-left:20vw !important; 
+								  margin:auto !important; font-size:1.5vw;">
+ -->							  </form>
+ 							</div>
+						</div>
+					  </div>
+					  <!-- END TAB 1 --> 
+
+			    	<!-- TABS 2: Newsfeed --> 
+			    	<div class="mdl-tabs__panel" id="sign-up">
+					    <!-- Card 1: Notifications --> 
+					    <form method="GET">
+			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width:50%; height:70%;">
+							  <div class="mdl-card__title" style="text-align:center !important;" id="newsfeed-card">
+							    <h2 class="mdl-card__title-text" id="newsfeed-title" style="margin:auto;">Sign Up</h2>
+							  </div>
+							  <!-- <hr id="newsfeed-divider"> -->
+							  <!-- Test -->
+							  <div id="login-div" style="margin:auto; width:30vw; font-size:1vw; padding-top:3vw; margin-bottom:25vh;">
+								  Full Name:<br>
+								  <input type="text" placeholder="Full Name" name="Full_Name" style="font-size:1.5vw; width:100%; margin:auto; margin-bottom:3vh;">
+								  <br>
+								  Email Address:<br>
+								  <input type="text" placeholder="Enter Email Address" name="Username" style="font-size:1.5vw; width:100%; margin:auto; margin-bottom:3vh;">
+								  <br>
+								  Password:<br>
+								  <input type="password" placeholder="Enter Password" name="Password" style="width:100%; margin:auto; font-size:1.5vw;">
+								  <br><br>
+								  <span style="font-size:1.5vw;">Account Type:</span>
+								  <select name="Type" style="margin-left:1vw; font-size:1.5vw;">
+									  <option value="Athlete">Athlete</option>
+									  <option value="Instructor">Instructor</option>
+								  </select>
+								  <br>
+								  <span>
+								  Athletes: can purchase digital products
+								  <br>
+								  Instructors: can create and sell digital products
+								  </span>
+								  <br><br>
+								  
+							  <input type="submit" name="Sign_Up" value="Sign Up" style="width:25%; margin-left:20vw !important; 
+							  margin:auto !important; font-size:1.5vw;">
+
+ 							</div>
+						</div>
+						</form>
+					  </div>
+					  <!-- END TAB 2 --> 
+
+
+		    	</div> 
+		    	<!-- END TABS --> 
+
+		    </div>
+		  </main>
+		</div>
+ 
+ </body>
+</html>
+
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  color: #fff;
+	  height: 300px;
+	  background: url('homepage_notifications_bg.jpg') center / cover;
+	  padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  padding: 0;
+	  float: left;
+	  margin-right: 20px;
+	}
+
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+
+</style>

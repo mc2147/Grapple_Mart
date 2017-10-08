@@ -1,0 +1,55 @@
+<html>
+ 	<head>
+  	<!-- Material Design Theme --> 
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script> 
+
+ </head>
+ 
+ <body>
+  	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  		<header class = "mdl-layout__header">
+    		<div class = "mdl-layout__header-row">
+    			<h1 class = "mdl-layout-title">
+                <a href = "/instructor-home" id="page-title-link" class="{% if NBar == 'Home' %}active{% endif %}">
+                GrappleMart</a></h1>
+    			<!-- <div class = "mdl-layout-spacer"></div> -->
+    			<!-- Where user navigation should be placed --> 
+    			<!-- <nav class = "mdl-navigation">                     -->
+                    <a class = "mdl-navigation__link {% if NBar == 'Profile' %}active{% endif %}" href = "/instructor-profile"
+                    style = "margin-left:2vw;">
+                    <i class="material-icons">account_circle</i></a>
+                    <a class = "mdl-navigation__link {% if NBar == 'Market' %}active{% endif %}" href = "/marketplace">
+                    <i class="material-icons">store_mall_directory</i>
+                    </a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Courses' %}active{% endif %}" href = "/instructor-courses">
+                    My Courses</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Products' %}active{% endif %}" href = "/view-instructor-products">
+                    My Products</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Social' %}active{% endif %}" href = "/social">
+                    Social</a>
+    			<!-- </nav>  -->
+    		</div>
+    	</header>
+
+    	<div class="mdl-layout__drawer">
+    		<!-- Where global navigation should be placed --> 
+		    <span class="mdl-layout-title">Navigation</span>
+		    <nav class="mdl-navigation">
+		      <a class="mdl-navigation__link" href="">Home</a>
+		      <a class="mdl-navigation__link" href="">About</a>
+		      <a class="mdl-navigation__link" href="">Contact</a>
+		    </nav>
+		  </div>
+
+    {% block main %}
+
+    {% endblock main %}
+</body>
+</html>
+
+{% block style %}
+
+{% endblock style %}
