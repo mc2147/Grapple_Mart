@@ -1,0 +1,278 @@
+{% extends "generic_header.html" %}
+{% block main %}
+{% load static %}
+
+  <!-- MAIN CONTENT --> 
+  <main class="mdl-layout__content">
+    <div class="page-content">
+
+	    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
+	    	<!-- Arrow back to Marketplace --> 
+	    	<!-- <a href="/marketplace" id='marketplace-back'><i class="material-icons">arrow_back</i>
+	    		<span id='marketplace-back-title'>Marketplace</span>
+	    	</a> -->
+
+			  <div class="mdl-card__title" id="instructor-card" style="display: flex;">
+			    <h2 class="mdl-card__title-text" id="instructor-title">Alloy Strength - Bookings</h2>
+			    <a href='/instructor-profile-preview' style='margin-left: 24px; margin-top: 4px; padding: 4px; 
+			    color: white; background-color: rgb(255,171,64); text-decoration: none;
+			    border-radius: 2px; '>Back To Profile</a>
+			  </div>
+
+			  <hr id="instructor-divider">
+			  <div class="mdl-card__supporting-text">
+
+				  <form method="GET">
+				    <div class='instructor-further-container'>
+			        <h3 id='instructor-further-title'>Availability & Scheduling</h3>
+			        <br>
+			        <span style="margin-left:2vw; font-size:1vw;">Click on available times on the calendar below to schedule an appointment.</span>
+			        <br>
+			        <span style="margin-left:2vw; font-size:0.75vw;">Appointment types available: <b>Private Lesson</b>, <b>Seminar</b></span>
+			        <div style="padding:2vw; padding-top:1vw;">
+					<iframe src="https://calendar.google.com/calendar/embed?src=feu8vi2c5l5gajsol245gjl714%40group.calendar.google.com&ctz=America/Chicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+			      </div>
+			      </div>
+			 
+					</form>
+			  </div>
+    </div>
+  </main>
+</div>
+ 
+{% endblock main %}
+
+ </body>
+</html>
+
+{% block style %}
+
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#marketplace-back {
+		color: rgb(255,171,64);
+		text-decoration: none;
+		margin-top: 8px;
+		margin-left: 12px;
+		font-size: 12px;
+		display: block;
+	}
+
+	#marketplace-back > i.material-icons {
+		font-size: 14px;
+		line-height: 30px;
+		height: 30px;
+		font-weight: bold;
+		padding: 0; 
+		padding-right: 2px;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+  	background-color: rgba(0,0,0,0.025);
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#instructor-title {
+		color: rgb(0, 83, 134); /* blue */ 
+		font-size: 32px;
+	}
+
+	#instructor-divider {
+		margin: 0;
+	}
+
+	.mdl-card__supporting-text {
+		width: 98%;
+		margin: 0 auto;
+		/* background-color: rgba(0, 0, 0, 0.05); */ 
+	}
+
+	#instructor-details-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	#instructor-details-left {
+		width: 300px;
+		margin-bottom: 24px;
+		/* box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); */ 
+	}
+
+	#instructor-image {
+		width: 100%;
+		margin-bottom: 24px;
+	}
+
+	#instructor-content {
+		width: 100%;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); 
+		background-color: rgb(251, 251, 251);   
+		border-radius: 4px;
+		text-align: left;
+	}
+
+	.padded-content {
+		padding: 16px;
+	}
+
+	#products-container {
+      width: 96%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 2%;
+      flex-wrap: wrap;
+	}
+
+  .product-type {
+    display: inline-block; /* set width to equal content */ 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 2px;
+  }
+
+  .product-type-video {
+    background-color: rgba(0, 88, 255, 0.7); /* blue */
+  }
+
+  .product-type-ebook {
+    background-color: rgba(38, 199, 0, 0.7); /* green */
+  }
+
+	#instructor-details-right {
+		width: 600px;
+		background-color: rgb(251, 251, 251);
+		border-radius: 4px;
+		margin-bottom: 24px;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	}
+
+	.instructor-further-container {
+		width: 90%;
+		margin: 0 auto;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		background-color: rgb(251, 251, 251);
+		border-radius: 4px;
+		margin-bottom: 24px;
+	}
+
+	#instructor-further-title {
+		background-color: rgb(0, 83, 134); /* light indigo or maybe rgb(1, 121, 195) */ 
+		color: white;
+		padding: 8px;
+		padding-left: 16px;
+		font-size: 20px;
+		height: 30px;
+		line-height: 30px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+
+	.mdl-card__supporting-text.products {
+      padding-top: 0;
+      padding-bottom: 0; 
+      margin: 0 auto;
+      width: 85%;
+      flex-grow: 1; 
+      word-break: break-all;
+  }
+
+  .mdl-card__actions.products {
+    position: relative;
+  }
+
+  .product-card {
+    width: 275px;  
+    margin: 1%;
+    margin-bottom: 4%;
+    font-size: 1vw;
+    background-color: rgba(0,0,0,0.025);
+  }
+
+  .product-thumbnail {
+    width: 230px;
+    height: 300px; 
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.1vw;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .product-thumbnail-title {
+    font-size: 20px;
+    color: black;
+    padding-bottom: 16px;
+  }
+
+  .product-type {
+    display: inline-block; /* set width to equal content */ 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 2px;
+  }
+
+  .product-type-video {
+    background-color: rgba(0, 88, 255, 0.7); /* blue */
+  }
+
+  .product-type-ebook {
+    background-color: rgba(38, 199, 0, 0.7); /* green */
+  }
+
+  .mdl-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 53px;
+    line-height: 37px;
+    flex-grow: 1;
+  }
+
+  .product-price {
+    margin-left: 16px;
+  }
+
+
+</style>
+	{% endblock style %}

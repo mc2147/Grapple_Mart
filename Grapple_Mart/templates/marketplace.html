@@ -1,4 +1,4 @@
-{% extends "header.html" %}
+{% extends "generic_header.html" %}
 {% block main %}
 
 {% load static %}
@@ -20,6 +20,9 @@
             </form>
           </div>
 
+              <!-- <img src='/static/Placeholders/course_placeholder.jpg'>             -->
+              <img src='static/Placeholders/alloy_strength_warm_up.png'>
+              <!-- <img src='/static/Placeholders/course_placeholder.jpg'>             -->
           {% for Product in Product_Displays %}
           <div class="demo-card-square mdl-card mdl-shadow--2dp product-card">
             <div class="mdl-card__title mdl-card--expand">
@@ -27,25 +30,25 @@
               <img src='{% static Static_URL %}' class = "product-thumbnail">
             {% endwith %}
             </div>
-            <div class="mdl-card__supporting-text">
-              <h2 class="mdl-card__title-text product-thumbnail-title">{{Product.Product_Title}}</h2>
+            <div class="mdl-card__supporting-text" style="word-break:normal !important;">
+              <h2 style="word-wrap:normal !important; word-break:normal !important;" class="mdl-card__title-text product-thumbnail-title">{{Product.Product_Title}}</h2>
 
               <!-- COMMENT in production --> 
-              <p>This is demo text to help visualize how formatting should be.</p>
+              <!-- <p>This is demo text to help visualize how formatting should be.</p> -->
               
               <!-- UNCOMMENT in production --> 
               <!--  <p>{{Product.Description}}</p> -->
 
               <!-- Conditionally render product type -->
               {% if Product.Product_Type == 'E_Book' %}
-                <p class='product-type product-type-ebook'>{{Product.Product_Type}}</p>
+                <p class='product-type product-type-ebook'>E-Book</p>
               {% elif Product.Product_Type == 'Video' %}
                 <p class='product-type product-type-video'>{{Product.Product_Type}}</p>
               {% endif %}
 
               <!-- COMMENT in production --> 
-              <p>Created by </p>
-              
+              <p>Created by: <a href="/instructor-profile-preview" style="margin-left:0.5vw; color:blue; font-weight:bold;"> {{Product.Instructor_Name}}</a></p>
+     
               <!-- UNCOMMENT in production --> 
               {% if Product.Product_Owner %}
                 <p>Created by <span>{{Product.Product_Owner}}</span></p>

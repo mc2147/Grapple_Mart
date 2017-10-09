@@ -4,7 +4,7 @@
 
 <div id='homepage-container'>
 
-	<div id='panel1' class='panel'>
+	<div id='panel1' class='panel' style="border-style:solid; border-width:5px; border-color:DarkBlue;">
 		{% for Product in Product_Displays %}
     <div class="demo-card-square mdl-card mdl-shadow--2dp product-card">
       <div class="mdl-card__title mdl-card--expand">
@@ -13,16 +13,15 @@
       {% endwith %}
       </div>
       <div class="mdl-card__supporting-text">
-        <h2 class="mdl-card__title-text product-thumbnail-title">{{Product.Product_Title}}</h2>
-
-        <!-- COMMENT in production --> 
-        <p>This is demo text to help visualize how formatting should be.</p>
+        <h2 style="margin-bottom:0px; {%if Product.Long_Title%}padding-bottom:5px; {%else%}padding-bottom:18px;{%endif%}" class="mdl-card__title-text product-thumbnail-title">{{Product.Product_Title}}</h2>
+        <!-- COMMENT in production -->        
+        <!-- <p style="margin-top:0px;">This is demo text to help visualize how formatting should be.</p> -->
         
         <!-- UNCOMMENT in production --> 
         <!--  <p>{{Product.Description}}</p> -->
        
-        <!-- COMMENT in production --> 
-        <p>Created by </p>
+        <!-- COMMENT in production -->         
+        <p>Created by: {%if Product.Long_Title %}<a href="/instructor-profile-preview" style="margin-left:0.5vw; color:blue; font-weight:bold;"> Alloy Strength</a>{% endif %}</p>
         
         <!-- UNCOMMENT in production --> 
         {% if Product.Product_Owner %}
@@ -34,10 +33,12 @@
       <div class="mdl-card__actions mdl-card--border">
         <input hidden name="Product_PK" value="{{Product.Product_PK}}">
         {% if Product.Product_Type == 'E_Book' %}
-          <p class='product-type product-type-ebook'>{{Product.Product_Type}}</p>
+          <p class='product-type product-type-ebook'>E-Book</p>
         {% elif Product.Product_Type == 'Video' %}
           <p class='product-type product-type-video'>{{Product.Product_Type}}</p>
         {% endif %}
+        <span style="float:right;" class='product-price'>${{Product.Product_Price}}0</span>
+        <br>
         <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect product-view-product" 
         value="View Product" name="View_Product" style='font-size: 10px; margin: 0; padding: 0;'>
       </div>
@@ -48,10 +49,11 @@
 	</div>
 
 	<div id='panel2' class='panel'>
-		<h3>Welcome!</h3>
+		<h3>Sign Up For Our Launch</h3>
 
 		<div id='panel2_desc'>
-			<p>This is a demo of GrappleMart, a site for jiu-jitsu professionals to share and sell digital products. Additional features will be coming out soon. Sign up with your email to stay tuned!
+			<p>This is a demo of <b>GrappleMart</b>, a site for professional jiu-jitsu athletes to create and share digital products. 
+			<br>More features will be coming out soon. Sign up with your email to stay tuned!
 			</p>
 		</div>
 

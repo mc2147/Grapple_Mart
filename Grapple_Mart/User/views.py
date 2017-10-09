@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .forms import InstructorAwardsForm
+# from .forms import InstructorAwardsForm
 from django.core.files import File
 from django.shortcuts import render
 from models import *
@@ -8,24 +8,32 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import os
 # Create your views here.
 
+Showing_Demo = True
+
 def Generic_Home(request): 
 	context = {} 
 	context["Test"] = True
 	context["Product_Displays"] = []
+	context["Show_Login"] = True
 
 	count = 0;
+	Num_Min_Products = 5
 	for _Product in Product.objects.all():
-
 		Display_Dict = {}
 		Product_Title = _Product.Title
 		if _Product.Has_Thumbnail:
 			Display_Dict["Thumbnail_URL"] = _Product.Thumbnail.url
 		else:
 			if (count < 1): 			
-				Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up.png"
+				Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up_new.png"
+				_Product.Title = "Warm Up: Mobility and Activation Series"
+				_Product.save()
+				Display_Dict["Long_Title"] = True
+				Display_Dict["Product_Title"] = Product_Title
 			else: 
 				Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
-		Display_Dict["Product_Title"] = Product_Title
+				Display_Dict["Product_Title"] = "Sample Product"
+		# Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up.png"
 		Display_Dict["Product_Description"] = _Product.Description
 		Display_Dict["Product_PK"] = _Product.pk
 		Display_Dict["Product_Type"] = _Product.Type
@@ -39,7 +47,6 @@ def Generic_Home(request):
 		print(request.GET["Product_PK"])
 		request.session["Product_PK"] = request.GET["Product_PK"]
 		return HttpResponseRedirect("/view-product")
-
 
 	return render(request, "generic_home.html", context)
 
@@ -101,20 +108,28 @@ def Create_Product(request):
 
 def Instructor_Profile(request):
 	context = {}
-	form = InstructorAwardsForm()
-	return render(request, "instructor_profile2.html", { 'form': form })
+	# form = InstructorAwardsForm()
+	return render(request, "instructor_profile2.html", context)
+	# return render(request, "instructor_profile2.html", { 'form': form })
 
 
 # Need to use primary key (pk) for individual instructors
 def Instructor_Profile_Preview(request): 
 	context = {}
+	if request.GET.get("View_Product"):
+		return HttpResponseRedirect("/view-product")
 	return render(request, "instructor_profile_user_view.html", context)
+
+def Instructor_Bookings(request): 
+	context = {}
+	return render(request, "instructor_profile_bookings.html", context)
 
 
 def View_Product(request):
 	context = {}
 	context["NBar"] = "View_Product"
 	context["Product_Title"] = "Product Title"
+
 	print(request.session["Product_PK"])
 	if "Product_PK" in request.session.keys():
 		print("Product PK: " + str(request.session["Product_PK"]))
@@ -129,7 +144,7 @@ def View_Product(request):
 	context["Type"] = Selected_Product.Type
 	context["Product_Description"] = Selected_Product.Description
 	context["Price"] = Selected_Product.Price
-
+	context["Warm_Up_Thumbnail"] = "Placeholders/alloy_strength_warm_up_new.png"
 
 	if request.method == "POST" and False:
 		token = request.POST.get('stripeToken') # Using Flask
@@ -150,6 +165,7 @@ def View_Product(request):
 	if request.method == "POST":
 		print("POST Detected")
 		request.session["Product_PK"] = Selected_Product.pk
+		request.session["Purchased"] = True
 		# return HttpResponseRedirect("/test-download")
 		return HttpResponseRedirect("/download-product")
 
@@ -158,18 +174,46 @@ def View_Product(request):
 def Download_Product(request):
 	context = {}
 	context["NBar"] = "Download_Product"
-
+	context["Purchased"] = request.session["Purchased"]
 	if "Product_PK" in request.session.keys():
 		print("Product PK: " + str(request.session["Product_PK"]))
 	Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
 	Title = Selected_Product.Title
 	File_URL = Selected_Product.File.url
+	print(File_URL)
 
 	context["Product_Title"] = Title
 	context["File_URL"] = File_URL
-	context["Test_Link"] = "/media/Products/Goblet_Box_Squat_Variations_Bissuht.mp4"
 
-	return render(request, "download_product.html", context)
+	if Showing_Demo:
+		context["File_URL"] = "/media/Products/AS_Warm_Up_Series.pdf"
+	else:
+		context["File_URL"] = "/media/Products/Demo_PDF.pdf"
+
+	if request.method == 'POST':
+		print("Form submitted")
+		if "Downloaded" in request.POST.keys() and request.POST["Downloaded"] == "Yes":
+			print("Downloaded")
+			request.session["Purchased"] = False
+			return HttpResponseRedirect("/download-product")
+
+	return render(request, "download_product_new.html", context)
+
+# def Download_Product(request):
+# 	context = {}
+# 	context["NBar"] = "Download_Product"
+
+# 	if "Product_PK" in request.session.keys():
+# 		print("Product PK: " + str(request.session["Product_PK"]))
+# 	Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
+# 	Title = Selected_Product.Title
+# 	File_URL = Selected_Product.File.url
+
+# 	context["Product_Title"] = Title
+# 	context["File_URL"] = File_URL
+# 	context["Test_Link"] = "/media/Products/Goblet_Box_Squat_Variations_Bissuht.mp4"
+
+# 	return render(request, "download_product.html", context)
 
 def Test_Download(request):
 	context = {}
@@ -200,19 +244,24 @@ def Marketplace(request):
 
 		Display_Dict = {}
 		Product_Title = _Product.Title
+		Display_Dict["Product_Price"] = _Product.Price
 		if _Product.Has_Thumbnail:
 			Display_Dict["Thumbnail_URL"] = _Product.Thumbnail.url
 		else:
 			if (count < 1): 			
-				Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up.png"
+				Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up_new.png"
+				Display_Dict["Product_Title"] = Product_Title
+				Display_Dict["Product_Price"] = "12.0"
+				_Product.Price = 12.0
+				_Product.save()
+				Display_Dict["Instructor_Name"] = "Alloy Strength"
 			else: 
 				Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
-		Display_Dict["Product_Title"] = Product_Title
+				Display_Dict["Product_Title"] = "Sample Product"
 		Display_Dict["Product_Description"] = _Product.Description
 		Display_Dict["Product_PK"] = _Product.pk
 		Display_Dict["Product_Type"] = _Product.Type
 		Display_Dict["Product_Owner"] = _Product.Owner
-		Display_Dict["Product_Price"] = _Product.Price
 		context["Product_Displays"].append(Display_Dict)
 
 		count += 1

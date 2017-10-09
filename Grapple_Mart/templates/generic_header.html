@@ -15,7 +15,7 @@
   		<header class = "mdl-layout__header">
     		<div class = "mdl-layout__header-row">
     			<h1 class = "mdl-layout-title">
-                <a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
+                <a href = "/generic-home" id="page-title-link">GrappleMart</a></h1>
                 <i class="material-icons" style='margin-left: 24px; margin-right: 4px'>search</i>
                 <input type='text' placeholder='Search Website' 
                     style='font-family: "Open Sans", sans-serif; border-radius: 4px; height: 30px; line-height: 30px;
@@ -34,8 +34,10 @@
                     </a>
     			</nav>  -->
                 <div class = "mdl-layout-spacer"></div>
+                {% if Show_Login %}
                 <a href="{% url 'Login' %}" class='user-action'>Sign Up</a>
                 <a href="{% url 'Login' %}" class='user-action'>Log In</a>
+                {% endif %}
                 
     		</div>
     	</header>

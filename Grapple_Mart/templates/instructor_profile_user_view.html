@@ -1,12 +1,12 @@
-{% extends "header.html" %}
+{% extends "generic_header.html" %}
 {% block main %}
 {% load static %}
 
   <!-- MAIN CONTENT --> 
-  <main class="mdl-layout__content">
-    <div class="page-content">
+  <main class="mdl-layout__content" style="height:auto;">
+    <div class="page-content" style="height:auto;">
 
-	    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+	    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="height:auto;">
 
 	    	<!-- Arrow back to Marketplace --> 
 	    	<!-- <a href="/marketplace" id='marketplace-back'><i class="material-icons">arrow_back</i>
@@ -14,21 +14,21 @@
 	    	</a> -->
 
 			  <div class="mdl-card__title" id="instructor-card" style="display: flex;">
-			    <h2 class="mdl-card__title-text" id="instructor-title">Instructor Name</h2>
-			    <a href='' style='margin-left: 24px; margin-top: 4px; padding: 4px; 
+			    <h2 class="mdl-card__title-text" id="instructor-title">Alloy Strength - Profile</h2>
+			    <a href='/instructor-bookings' style='margin-left: 24px; margin-top: 4px; padding: 4px; 
 			    color: white; background-color: rgb(255,171,64); text-decoration: none;
 			    border-radius: 2px; '>Bookings</a>
 			  </div>
 
 			  <hr id="instructor-divider">
-			  <div class="mdl-card__supporting-text">
+			  <div class="mdl-card__supporting-text" style="height:auto;">
 
-				  <form method="GET">
-				  	<div id='instructor-details-container'>
-					  	<div id='instructor-details-left'>
+				  <form method="GET" style="height:auto;">
+				  	<div id='instructor-details-container' style="text-align:left !important; margin-left:30px;">				  	
+ 					<!-- <div class='instructor-further-container'> -->
 
-					  		<img src = '{% static "Placeholders/instructor_placeholder.png" %}' id='instructor-image'>
-					  		
+					  	<div id='instructor-details-left' style="margin-left:0px; padding-left:0px; text-align:left; display:inline-block;">
+					  		<img src = '{% static "Profile_Pictures/Alloy_Strength.jpg" %}' id='instructor-image'>					  	
 									  
 							  <!-- {% if Has_Thumbnail %}
 							  	<img src='{{Thumbnail_URL}}' class='thumbnail-image'>
@@ -39,10 +39,10 @@
 				 				<div id='instructor-content'>
 				 					<div class='padded-content'>
 
-				            <p><b>Team/Affiliation:</b> Place Here!
+				            <p><b>Team/Affiliation:</b> Atos Jiu-Jitsu
 				        		</p>
 
-				        		<p><b>Gym Name:</b> Place Here!
+				        		<p><b>Gym Name:</b> Alloy Strength Systems
 				        		</p>
 				            
 				          </div>
@@ -50,31 +50,15 @@
 
 						  </div>
 
-				      <div id='instructor-details-right'>
+				      <div id='instructor-details-right' style="display:inline-block; ">
 				      	<h3 id='instructor-further-title'> Bio </h3>
 				      	<div class='padded-content'>
-				        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+				      	<p>Al·loy (/ˈaˌloi/), noun - a metal made by combining two or more metallic elements, especially to give greater strength or resistance to corrosion. Alloy Strength is a virtual training platform that provides cutting-edge individualized online workout programs to athletes of any sport, at any skill or experience level, worldwide.</p>
+						<p>Our coaches come from some of the best academic programs in the world, with experience working with elite athletes in multiple sports across the country, and are NSCA Certified Strength and Conditioning Specialists (CSCS). All of our members get coaching access and progressive, goal-driven programming in a supportive and focused training community.</p>
+						<p>At Alloy Strength, no two programs are the same. We specify our programming to every individual, helping you move better, perform better, and become an alloy; strong and resilient.</p>
 				      	</div>
 				      </div>
-
 				    </div> <!-- end container --> 
-
-				    <div class='instructor-further-container'>
-			        <h3 id='instructor-further-title'> Awards and Accomplishments </h3>
-
-				    	<div class='padded-content'>
-				    		<ul>
-				    			<li>Award 1</li>
-				    			<li>Award 2</li>
-				    			<li>Award 3</li>
-				    			<li>Award 4</li>
-				    			<li>Award 5</li>
-
-				    		</ul>
-				      </div>
-
-			      </div>
-
 			      <div class='instructor-further-container'>
 			        <h3 id='instructor-further-title'> Products </h3>
 
@@ -82,20 +66,17 @@
 				    		
 					    	<div class="demo-card-square mdl-card mdl-shadow--2dp product-card">
 				          <div class="mdl-card__title mdl-card--expand">
-				            <img src='{% static "Placeholders/course_placeholder.jpg" %}' class = "product-thumbnail">
+				            <!-- <img src='{% static "Placeholders/course_placeholder.jpg" %}' class = "product-thumbnail"> -->
+				            <img src='{% static "Placeholders/alloy_strength_warm_up_new.png" %}' class = "product-thumbnail">
 				           </div>
 				          
-				          <div class="mdl-card__supporting-text products">
-				            <h2 class="mdl-card__title-text product-thumbnail-title">Product Title</h2>
-
+				          <div class="mdl-card__supporting-text products" style="word-break:normal !important;">
+				            <h2 class="mdl-card__title-text product-thumbnail-title">Warm Up: Mobility and Activation Series</h2>
 			              <!-- COMMENT in production --> 
-			              <p>This is demo text to help visualize how formatting should be.</p>
-			              
+			              <!-- <p>This is demo text to help visualize how formatting should be.</p> -->			              
 			              <!-- UNCOMMENT in production --> 
 			              <!--  <p>{{Product.Description}}</p> -->
-
-			              <p class='product-type product-type-ebook'>Type</p>
-
+			              <p class='product-type product-type-ebook'>E-Book</p>
 			              <!-- Conditionally render product type -->
 			              <!-- {% if Product.Product_Type == 'E_Book' %}
 			                <p class='product-type product-type-ebook'>Type</p>
@@ -107,7 +88,7 @@
 			            <form style="margin-bottom:0px;" method="GET">
 			            <div class="mdl-card__actions products mdl-card--border">
 			              <input hidden name="Product_PK" value="{{Product.Product_PK}}">
-			              <span class='product-price'>$0</span>
+			              <span class='product-price'>$12.00</span>
 			              <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect product-view-product" 
 			              value="View Product" name="View_Product">
 			            </div>
@@ -116,6 +97,32 @@
 				    	</div>
 
 			      </div>
+			        <h3 style="margin-left:4vw;"><b><-- SAMPLE MATERIAL --></b></h3>
+				    <div class='instructor-further-container'>
+			        <h3 id='instructor-further-title'>Awards and Accomplishments </h3>
+				    	<div class='padded-content'>
+				    	Coming Soon
+				    	<br>
+				    	Example:
+				    	<ul>
+				    	<li>Gold Medalist at ADCC 2017</li>
+				    	<li>Pro MMA record of 14-8</li>
+				    	</ul>
+				      </div>
+			      </div>
+				    <div class='instructor-further-container' style="height:100%;">
+			        <h3 id='instructor-further-title'>Media</h3>
+				    	<div class='padded-content' style="height:auto;">
+				    	Coming Soon
+				    	<br><br>
+				    	<b>Example:</b>
+				    	<br><br>
+				    	<div style="width:80%; margin:auto;">
+				<iframe width="100" height="500" src="https://www.youtube.com/embed/V6-Bl1pShSA?ecver=1" frameborder="0" allowfullscreen></iframe>
+					</div>
+				      </div>
+			</div>
+
 			 
 					</form>
 			  </div>

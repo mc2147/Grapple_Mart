@@ -23,7 +23,8 @@ urlpatterns = [
 
     url(r'^instructor-profile-preview/', Instructor_Profile_Preview, name="Instructor_Profile_Preview"),
     url(r'^instructor-profile/', Instructor_Profile, name="Instructor_Profile"),
-    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^instructor-bookings/', Instructor_Bookings, name="Instructor_Profile"),
+    # url(r'^tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG is True:

@@ -1,4 +1,4 @@
-{% extends "header.html" %}
+{% extends "generic_header.html" %}
 {% block main %}
 {% load static %}
 <!-- Set up Stripe --> 
@@ -15,7 +15,7 @@
 	    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
 
 	    	<!-- Arrow back to Marketplace --> 
-	    	<a href="/marketplace" id='marketplace-back'><i class="material-icons">arrow_back</i>
+	    	<a href="/marketplace" id='marketplace-back' style="color:blue;"><i class="material-icons">arrow_back</i>
 	    		<span id='marketplace-back-title'>Marketplace</span>
 	    	</a>
 
@@ -29,27 +29,31 @@
 				  <form method="GET">
 
 				  	<div id='product-details-container'>
-					  	<div id='product-details-left'>
+					  	<div id='product-details-left' style="text-align:center;">
 
-							  <h3 id='product-title'>{{Product_Title}}</h3>
-									  
+							{{Thumbnail_URL}}
+							  <h3 id='product-title'>{{Product_Title}}
+							  <br>
+							  <!-- <b>(E-Book)</b> -->
+							  </h3>
 							  {% if Has_Thumbnail %}
 							  	<img src='{{Thumbnail_URL}}' class='thumbnail-image'>
 							  {% else %}
-							  	<img src='{% static 'Home/video_placeholder.jpg' %}' class='thumbnail-image'>
+							  	<img src='/static/{{Warm_Up_Thumbnail}}' class='thumbnail-image' style="max-height:300px; width:auto; margin-bottom:10px;">
+							  	<!-- <br> -->
+							  	<!-- <img src='{% static 'Home/video_placeholder.jpg' %}' class='thumbnail-image'> -->
 							  {% endif %}
 				 
-				 				<div id='product-content'>
+				 				<div id='product-content' style="text-align:left;">
 				 					<div class='padded-content'>
 
-				 						<p><b>Created By</b>{{Owner}}</p>
-
-				            <p>This is demo text to help visualize how formatting should be.
-					            This is demo text to help visualize how formatting should be.
-					          	This is demo text to help visualize how formatting should be.
-					        		This is demo text to help visualize how formatting should be.
-				        		</p>
-
+				 						<p><b>Created By:</b>
+				 						<a href="/instructor-profile-preview" style="margin-left:0.5vw; color:blue; font-weight:bold;"> Alloy Strength</a>
+				 						<a>{{Owner}}</a></p>
+				 						<b>Description:</b>
+							 			<p>There are many ways to prepare, or “warm-up”, prior to a training session. It is important to warm-up in order to decrease the risk of injury and increase performance.</p> 
+							 			<p>A warm-up must serve three main purposes: 1) Increase core body temperature 2) Increase heart rate 3) Prime the various systems of the body for the specific training session.</p> 
+							 			<p>Alloy Strength’s <i>Warm Up Series</i> is a quick and simple movement sequence to prepare you for nearly any type of resistance training.</p>
 				        		<hr>
 		              
 		              	<!-- UNCOMMENT in production --> 
@@ -57,15 +61,14 @@
 
 		              	<!-- <p>Product File: {{File_URL}}</p> -->
 								   
-				            <p><b>Product Type:</b> 
+				            <p><b style="margin-right:1vw;">Product Type:</b> 
 				            	{% if Type == 'Video' %}
 				            	<span class='product-type product-type-video'>
+				            	Video Product
 				            	{% elif Type == 'E_Book' %}
 				            	<span class='product-type product-type-ebook'>
+				            	E-Book
 				            	{% endif %}
-
-				            		{{ Type }}
-
 				            	</span>
 
 				            </p>
@@ -85,7 +88,7 @@
 								  	<div class="mdl-tabs__tab-bar ebook">
 								  {% endif %}
 								      <a href="#excerpts-panel" class="mdl-tabs__tab is-active">
-								      	<span>Excerpts</span>
+								      	<span>Samples</span>
 								      	<i class="material-icons">remove_red_eye</i></a>
 								      <a href="#reviews-panel" class="mdl-tabs__tab">
 								      	<span>Reviews</span>
@@ -94,13 +97,13 @@
 
 								  <div class="mdl-tabs__panel is-active" id="excerpts-panel">
 								    <div class='padded-content'>
-								    	<p> Excerpts Coming Soon! </p>
+								    	<p>Coming Soon! </p>
 								    </div>
 								  </div>
 
 								  <div class="mdl-tabs__panel" id="reviews-panel">
 								    <div class='padded-content'>
-								    	<p> Reviews Coming Soon! </p>
+								    	<p>Coming Soon! </p>
 								    </div>
 								  </div>
 
@@ -111,15 +114,22 @@
 				    </div> <!-- end product-details-container --> 
 
 				    <div id='payment-container'>
-			        <h3 id='purchase-product-title'> Purchase Product </h3>
-
+			        <h3 id='purchase-product-title'> Purchase Product</h3>
 				    	<div class='padded-content'>
 				        <form method="POST" id="payment-form">{% csrf_token %}
 					        <div class="form-row">
+			        			Fill out the information below to purchase <b><i>{{Product_Title}}</b></i>
+			        			<br><br>
 					            <label for="card-element">
-					              Credit or Debit card
+					              Email Address
 					            </label>
-
+					            <br>
+					        	<input type="email" name="Payment_Email" placeholder="Enter Email Address">
+					        	<br><br>
+					            <label for="card-element">
+					              Credit or Debit Card
+					            </label>
+					            <br>
 					            <div id="card-element">
 					              <!-- a Stripe Element will be inserted here. -->
 					            </div>
@@ -130,12 +140,19 @@
 				          <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
 				          <br>
 					        {{Payment_Status}}
-
 				        </form>
 
 				        <hr>
+					<script>
+					    function confirmation() {
+					    	return confirm("Confirm your purchase of " + {{Product_Title}});
+					    }
+					</script>
 				        <form method="POST" style='margin-bottom: 0;'>{% csrf_token %}
-				            <input type="submit" name="Buy_Product" value="Buy" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+				            <input type="submit" name="Buy_Product" value="Confirm Purchase" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+				            onclick="if(!confirm('Confirm your purchase of {{Product_Title}}')) {
+				            		event.preventDefault();
+				            	}">
 				            <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
 				        </form>
 				      </div>
