@@ -16,6 +16,10 @@
     		<div class = "mdl-layout__header-row">
     			<h1 class = "mdl-layout-title">
                 <a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
+                <i class="material-icons" style='margin-left: 24px; margin-right: 4px'>search</i>
+                <input type='text' placeholder='Search Website' 
+                    style='font-family: "Open Sans", sans-serif; border-radius: 4px; height: 30px; line-height: 30px;
+                    border: none; padding-left: 10px; width: 300px'>
     			<!-- <div class = "mdl-layout-spacer"></div> -->
     			<!-- Where user navigation should be placed --> 
     			<!-- <nav class = "mdl-navigation">                    
@@ -30,10 +34,9 @@
                     </a>
     			</nav>  -->
                 <div class = "mdl-layout-spacer"></div>
-                <i class="material-icons" style='margin-right: 4px'>search</i>
-                <input type='text' placeholder='Search Website' 
-                    style='font-family: "Open Sans", sans-serif; border-radius: 4px; height: 30px; line-height: 30px;
-                    border: none; padding-left: 10px; width: 300px'>
+                <a href="{% url 'Login' %}" class='user-action'>Sign Up</a>
+                <a href="{% url 'Login' %}" class='user-action'>Log In</a>
+                
     		</div>
     	</header>
 

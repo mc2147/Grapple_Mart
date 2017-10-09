@@ -13,8 +13,11 @@
 	    		<span id='marketplace-back-title'>Marketplace</span>
 	    	</a> -->
 
-			  <div class="mdl-card__title" id="instructor-card">
+			  <div class="mdl-card__title" id="instructor-card" style="display: flex;">
 			    <h2 class="mdl-card__title-text" id="instructor-title">Instructor Name</h2>
+			    <a href='' style='margin-left: 24px; margin-top: 4px; padding: 4px; 
+			    color: white; background-color: rgb(255,171,64); text-decoration: none;
+			    border-radius: 2px; '>Bookings</a>
 			  </div>
 
 			  <hr id="instructor-divider">
@@ -23,9 +26,9 @@
 				  <form method="GET">
 				  	<div id='instructor-details-container'>
 					  	<div id='instructor-details-left'>
-					  		<div id='instructor-image-container'>
-					  			<img src = '{% static "Placeholders/instructor_placeholder.png" %}' id='instructor-image'>
-					  		</div>
+
+					  		<img src = '{% static "Placeholders/instructor_placeholder.png" %}' id='instructor-image'>
+					  		
 									  
 							  <!-- {% if Has_Thumbnail %}
 							  	<img src='{{Thumbnail_URL}}' class='thumbnail-image'>
@@ -203,6 +206,7 @@
 		flex-wrap: wrap;
 		justify-content: space-evenly;
 		width: 100%;
+		margin: 0 auto;
 	}
 
 	#instructor-details-left {
@@ -211,14 +215,9 @@
 		/* box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); */ 
 	}
 
-	#instructor-image-container {
-		width: 70%;
-		margin: 0 auto;
-		margin-bottom: 24px;
-	}
-
 	#instructor-image {
 		width: 100%;
+		margin-bottom: 24px;
 	}
 
 	#instructor-content {
@@ -226,7 +225,7 @@
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); 
 		background-color: rgb(251, 251, 251);   
 		border-radius: 4px;
-		text-align: center;
+		text-align: left;
 	}
 
 	.padded-content {
