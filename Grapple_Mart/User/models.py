@@ -9,7 +9,9 @@ class Instructor(models.Model):
 	User = models.OneToOneField(User)
 	Followers = models.ManyToManyField('Athlete', default="")
 	Name = models.CharField(default="", max_length=100)
-	Bio = HTMLField()
+	Bio = HTMLField(blank = True)
+	Awards = HTMLField(blank = True)
+	# need to add profile pic
 
 class Athlete(models.Model):
 	User = models.OneToOneField(User)

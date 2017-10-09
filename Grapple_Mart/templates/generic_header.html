@@ -1,0 +1,64 @@
+{% load static %}
+<html>
+ 	<head>
+  	<!-- Material Design Theme --> 
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+        <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script> 
+        <script type="text/javascript" src="{% static 'js/tinymce/custom.js' %}" ></script> 
+    </head>
+    
+    <body>
+  	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  		<header class = "mdl-layout__header">
+    		<div class = "mdl-layout__header-row">
+    			<h1 class = "mdl-layout-title">
+                <a href = "homepage.html" id="page-title-link">GrappleMart</a></h1>
+    			<!-- <div class = "mdl-layout-spacer"></div> -->
+    			<!-- Where user navigation should be placed --> 
+    			<!-- <nav class = "mdl-navigation">                    
+    				<a class = "mdl-navigation__link {% if NBar == 'Courses' %}active{% endif %}" href = "/courses">
+                    Courses</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Products' %}active{% endif %}" href = "/products">
+                    Purchased Products</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Social' %}active{% endif %}" href = "/social">
+                    Social</a>
+                    <a class = "mdl-navigation__link {% if NBar == 'Market' %}active{% endif %}" href = "/marketplace">
+                    <i class="material-icons">store_mall_directory</i>
+                    </a>
+    			</nav>  -->
+                <div class = "mdl-layout-spacer"></div>
+                <i class="material-icons" style='margin-right: 4px'>search</i>
+                <input type='text' placeholder='Search Website' 
+                    style='font-family: "Open Sans", sans-serif; border-radius: 4px; height: 30px; line-height: 30px;
+                    border: none; padding-left: 10px; width: 300px'>
+    		</div>
+    	</header>
+
+    	<div class="mdl-layout__drawer">
+    		<!-- Where global navigation should be placed --> 
+		    <span class="mdl-layout-title">Navigation</span>
+		    <nav class="mdl-navigation">
+                <!-- <a class = "mdl-navigation__link" href = "/home">
+                    <i class="material-icons" style='margin-right: 4px'>account_circle</i>Profile
+                </a> -->
+                <a class="mdl-navigation__link" href="">
+                    <i class="material-icons" style='margin-right: 4px'>home</i>Home</a>
+                <a class="mdl-navigation__link" href="">
+                    <i class="material-icons" style='margin-right: 4px'>info</i>About</a>
+                <a class="mdl-navigation__link" href="">
+                    <i class="material-icons" style='margin-right: 4px'>phone</i>Contact</a>
+		    </nav>
+		</div>
+
+    {% block main %}
+
+    {% endblock main %}
+</body>
+</html>
+
+{% block style %}
+
+{% endblock style %}

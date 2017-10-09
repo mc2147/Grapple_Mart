@@ -1,11 +1,47 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from .forms import InstructorAwardsForm
 from django.core.files import File
 from django.shortcuts import render
 from models import *
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import os
 # Create your views here.
+
+def Generic_Home(request): 
+	context = {} 
+	context["Test"] = True
+	context["Product_Displays"] = []
+
+	count = 0;
+	for _Product in Product.objects.all():
+
+		Display_Dict = {}
+		Product_Title = _Product.Title
+		if _Product.Has_Thumbnail:
+			Display_Dict["Thumbnail_URL"] = _Product.Thumbnail.url
+		else:
+			if (count < 1): 			
+				Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up.png"
+			else: 
+				Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
+		Display_Dict["Product_Title"] = Product_Title
+		Display_Dict["Product_Description"] = _Product.Description
+		Display_Dict["Product_PK"] = _Product.pk
+		Display_Dict["Product_Type"] = _Product.Type
+		Display_Dict["Product_Owner"] = _Product.Owner
+		Display_Dict["Product_Price"] = _Product.Price
+		context["Product_Displays"].append(Display_Dict)
+
+		count += 1
+
+	if request.GET.get("View_Product"):
+		print(request.GET["Product_PK"])
+		request.session["Product_PK"] = request.GET["Product_PK"]
+		return HttpResponseRedirect("/view-product")
+
+
+	return render(request, "generic_home.html", context)
 
 def Login(request):
 	context = {}
@@ -65,7 +101,14 @@ def Create_Product(request):
 
 def Instructor_Profile(request):
 	context = {}
-	return render(request, "instructor_profile.html", context)
+	form = InstructorAwardsForm()
+	return render(request, "instructor_profile2.html", { 'form': form })
+
+
+# Need to use primary key (pk) for individual instructors
+def Instructor_Profile_Preview(request): 
+	context = {}
+	return render(request, "instructor_profile_user_view.html", context)
 
 
 def View_Product(request):
@@ -152,17 +195,27 @@ def Marketplace(request):
 
 	context["Product_Displays"] = []
 
+	count = 0;
 	for _Product in Product.objects.all():
+
 		Display_Dict = {}
 		Product_Title = _Product.Title
 		if _Product.Has_Thumbnail:
 			Display_Dict["Thumbnail_URL"] = _Product.Thumbnail.url
-		else:			
-			Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
+		else:
+			if (count < 1): 			
+				Display_Dict["Thumbnail_URL"] = "Placeholders/alloy_strength_warm_up.png"
+			else: 
+				Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
 		Display_Dict["Product_Title"] = Product_Title
 		Display_Dict["Product_Description"] = _Product.Description
 		Display_Dict["Product_PK"] = _Product.pk
+		Display_Dict["Product_Type"] = _Product.Type
+		Display_Dict["Product_Owner"] = _Product.Owner
+		Display_Dict["Product_Price"] = _Product.Price
 		context["Product_Displays"].append(Display_Dict)
+
+		count += 1
 
 	if request.GET.get("View_Product"):
 		print(request.GET["Product_PK"])
@@ -200,3 +253,5 @@ def Home_Courses(request):
 	context = {}
 	context["NBar"] = "Courses"
 	return render(request, "courses.html", context)
+
+	

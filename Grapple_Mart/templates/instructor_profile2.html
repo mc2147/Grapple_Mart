@@ -1,0 +1,131 @@
+
+{% load static %}
+<html>
+ 	<head>
+  	<!-- Material Design Theme --> 
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script> 
+    <script type="text/javascript" src="{% static 'js/tinymce/custom.js'%}" ></script> 
+  </head>
+  <body>
+
+  	<!-- Instructor Form --> 
+		<form method="POST">{% csrf_token %}
+			<div>
+	  		<i class="material-icons mdl-list__item-avatar">person</i>
+				<p>Edit Profile Picture</p>
+				<input type="file">
+			</div>
+			
+      	{{ form }}
+
+      <div>
+				<p>
+					<span>Gym Name</span>
+					<div class="mdl-textfield mdl-js-textfield">
+			    	<input class="mdl-textfield__input" type="text" id="sample1">
+			    	<label class="mdl-textfield__label" for="sample1">Enter Name Here</label>
+			  	</div>
+				</p>
+			</div>
+
+			<div>
+				<p>
+					<span>Team or Affiliation</span>
+					<div class="mdl-textfield mdl-js-textfield">
+			    	<input class="mdl-textfield__input" type="text" id="sample2">
+			    	<label class="mdl-textfield__label" for="sample2">Enter Name Here</label>
+			  	</div>
+				</p>
+			</div>	
+  		
+  		<button type="submit">Save</button>
+		</form>						
+
+ </body>
+</html>
+
+{% block style %}
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+	}
+
+	.demo-card-wide.mdl-card {
+  		width: 85%;
+  		margin: 0 auto;
+	}
+
+	.demo-card-wide > #notifications-card {
+	  	color: #fff;
+	  	/*height: 300px;*/
+	  	background: url('homepage_notifications_bg.jpg') center / cover;
+	  	padding: 0;
+	}
+
+	.demo-card-wide > #notifications-card > .mdl-card__title-text {
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		padding: 10px;
+	}
+
+	.demo-card-wide > .mdl-card__menu {
+	  	color: #fff;
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.video-icon {
+		height: 100px; 
+		width: 200px;
+	  	padding: 0;
+	  	float: left;
+	  	margin-right: 20px;
+	}
+
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+</style>
+
+{% endblock style %}

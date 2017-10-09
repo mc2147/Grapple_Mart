@@ -1,95 +1,162 @@
 {% extends "header.html" %}
 {% block main %}
 {% load static %}
+<!-- Set up Stripe --> 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     var stripe = Stripe('pk_test_XXOQiKnnXqjJlJG5euwKirzj');
     var elements = stripe.elements();
 </script>
-		  <!-- MAIN CONTENT --> 
-		  <main class="mdl-layout__content">
-		    <div class="page-content">
-		    	<br> <!-- break --> 
 
-		    	<!-- TABS --> 
-		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
-				  	<br>
-			    	<!-- TABS 2: Newsfeed --> 
-			    	<div class="mdl-tabs__panel is-active" id="add_product">
-					     <!-- Card 2: Newsfeed --> 
-			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-			    			<a href="/marketplace" style="color:blue; margin-left:1vw;">Back to Marketplace</a>
-							  <div class="mdl-card__title" id="newsfeed-card">
-							    <h2 class="mdl-card__title-text" id="newsfeed-title">Product Details</h2>
-							  </div>
+  <!-- MAIN CONTENT --> 
+  <main class="mdl-layout__content">
+    <div class="page-content">
 
-							  <hr id="newsfeed-divider">
-							  <div class="mdl-card__supporting-text">
-							  <form method="GET">
-									  <h3>{{Product_Title}}</h3>
-									  {% if Has_Thumbnail %}
-									  <img height="300" src='{{Thumbnail_URL}}'>
-									  {% else %}
-									  <img height="300" src='{% static 'Home/video_placeholder.jpg' %}'>
-									  {% endif %}
+	    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
 
-								    <ul class="demo-list-three mdl-list">
-								    <!-- Title, File, Description -->
-								    <br>
-								    <b>Product File:</b>
-								    {{File_URL}}
-						            <br><br>
-						            <b>Product Type: {{Type}}</b>
-						            <br><br>
-						            <b>Description:</b><br>
-						            {{Product_Description}}
-						            <br> 
-						            Price: $ {{Price}} USD
-						            <br>
-							        <form method="POST" id="payment-form">{% csrf_token %}
-								          <div class="form-row">
-								            <label for="card-element">
-								              Credit or Debit card
-								            </label><br><br>
-								            <div id="card-element" style="padding-left:1vw; border-style:solid;">
-								              <!-- a Stripe Element will be inserted here. -->
-								            </div>
+	    	<!-- Arrow back to Marketplace --> 
+	    	<a href="/marketplace" id='marketplace-back'><i class="material-icons">arrow_back</i>
+	    		<span id='marketplace-back-title'>Marketplace</span>
+	    	</a>
 
-								            <!-- Used to display Element errors -->
-								            <div id="card-errors" role="alert"></div>
-								          </div>
-								          <br>
-							            <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
-								        <br>
-								        {{Payment_Status}}
-								        <br>
-							        </form>
-							        <form method="POST">{% csrf_token %}
-							            <input type="submit" name="Buy_Product" value="Buy Product">
-							            <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
-							        </form>
-						            <br>
-							</form>
-					  </div>
+			  <div class="mdl-card__title" id="newsfeed-card">
+			    <h2 class="mdl-card__title-text" id="newsfeed-title">Product Details</h2>
+			  </div>
 
-					  <!-- TAB 3: Courses in Progress --> 
-					  <div class="mdl-tabs__panel" id="courses-in-progress-panel">
-			    	</div>
-			    	<!-- END TAB 3 --> 
+			  <hr id="newsfeed-divider">
+			  <div class="mdl-card__supporting-text">
 
-		    	</div> 
-		    	<!-- END TABS --> 
+				  <form method="GET">
 
-		    </div>
-		  </main>
-		</div>
+				  	<div id='product-details-container'>
+					  	<div id='product-details-left'>
+
+							  <h3 id='product-title'>{{Product_Title}}</h3>
+									  
+							  {% if Has_Thumbnail %}
+							  	<img src='{{Thumbnail_URL}}' class='thumbnail-image'>
+							  {% else %}
+							  	<img src='{% static 'Home/video_placeholder.jpg' %}' class='thumbnail-image'>
+							  {% endif %}
+				 
+				 				<div id='product-content'>
+				 					<div class='padded-content'>
+
+				 						<p><b>Created By</b>{{Owner}}</p>
+
+				            <p>This is demo text to help visualize how formatting should be.
+					            This is demo text to help visualize how formatting should be.
+					          	This is demo text to help visualize how formatting should be.
+					        		This is demo text to help visualize how formatting should be.
+				        		</p>
+
+				        		<hr>
+		              
+		              	<!-- UNCOMMENT in production --> 
+		              	<!--  <p>{{Product.Description}}</p> -->
+
+		              	<!-- <p>Product File: {{File_URL}}</p> -->
+								   
+				            <p><b>Product Type:</b> 
+				            	{% if Type == 'Video' %}
+				            	<span class='product-type product-type-video'>
+				            	{% elif Type == 'E_Book' %}
+				            	<span class='product-type product-type-ebook'>
+				            	{% endif %}
+
+				            		{{ Type }}
+
+				            	</span>
+
+				            </p>
+				            
+				            <p><b>Price:</b> ${{Price}}0 USD</p>
+				          </div>
+			          </div>
+
+						  </div>
+
+				      <div id='product-details-right'>
+				      	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+				      		{% if Type == 'Video' %}
+								  	<div class="mdl-tabs__tab-bar video">
+								  {% elif Type == 'E_Book' %} 
+								  	<div class="mdl-tabs__tab-bar ebook">
+								  {% endif %}
+								      <a href="#excerpts-panel" class="mdl-tabs__tab is-active">
+								      	<span>Excerpts</span>
+								      	<i class="material-icons">remove_red_eye</i></a>
+								      <a href="#reviews-panel" class="mdl-tabs__tab">
+								      	<span>Reviews</span>
+								      	<i class="material-icons">star</i></a>
+								  	</div>
+
+								  <div class="mdl-tabs__panel is-active" id="excerpts-panel">
+								    <div class='padded-content'>
+								    	<p> Excerpts Coming Soon! </p>
+								    </div>
+								  </div>
+
+								  <div class="mdl-tabs__panel" id="reviews-panel">
+								    <div class='padded-content'>
+								    	<p> Reviews Coming Soon! </p>
+								    </div>
+								  </div>
+
+								</div>
+
+				      </div>
+
+				    </div> <!-- end product-details-container --> 
+
+				    <div id='payment-container'>
+			        <h3 id='purchase-product-title'> Purchase Product </h3>
+
+				    	<div class='padded-content'>
+				        <form method="POST" id="payment-form">{% csrf_token %}
+					        <div class="form-row">
+					            <label for="card-element">
+					              Credit or Debit card
+					            </label>
+
+					            <div id="card-element">
+					              <!-- a Stripe Element will be inserted here. -->
+					            </div>
+
+					            <!-- Used to display Element errors -->
+					            <div id="card-errors" role="alert"></div>
+					        </div>
+				          <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
+				          <br>
+					        {{Payment_Status}}
+
+				        </form>
+
+				        <hr>
+				        <form method="POST" style='margin-bottom: 0;'>{% csrf_token %}
+				            <input type="submit" name="Buy_Product" value="Buy" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+				            <!-- <input type="submit" name="Buy_Product" value="Buy Product"> -->
+				        </form>
+				      </div>
+
+			      </div>
+			 
+					</form>
+			  </div>
+    </div>
+  </main>
+</div>
+
 		<script>
+
 		    var style = {
 		      base: {
 		        // Add your base input styles here. For example:
 		        fontSize: '16px',
-		        lineHeight: '24px'
+		        lineHeight: '24px',
+		        fontFamily: 'Open Sans'
 		      }
 		    };
 
@@ -144,10 +211,29 @@
 </html>
 
 {% block style %}
+
 <style>
 
 	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
 		font-family: "Open Sans", sans-serif;
+	}
+
+	#marketplace-back {
+		color: rgb(255,171,64);
+		text-decoration: none;
+		margin-top: 8px;
+		margin-left: 12px;
+		font-size: 12px;
+		display: block;
+	}
+
+	#marketplace-back > i.material-icons {
+		font-size: 14px;
+		line-height: 30px;
+		height: 30px;
+		font-weight: bold;
+		padding: 0; 
+		padding-right: 2px;
 	}
 
 	#page-title-link {
@@ -159,26 +245,10 @@
 		margin-top: 25%;
 	}
 
-	.mdl-tabs__tab-bar {
-		border-bottom: none; 
-	}
-
 	.demo-card-wide.mdl-card {
   	width: 85%;
   	margin: 0 auto;
-	}
-
-	.demo-card-wide > #notifications-card {
-	  color: #fff;
-	  height: 300px;
-	  background: url('homepage_notifications_bg.jpg') center / cover;
-	  padding: 0;
-	}
-
-	.demo-card-wide > #notifications-card > .mdl-card__title-text {
-		background-color: rgba(0, 0, 0, 0.5);
-		width: 100%;
-		padding: 10px;
+  	background-color: rgba(0,0,0,0.025);
 	}
 
 	.demo-card-wide > .mdl-card__menu {
@@ -202,25 +272,136 @@
 		font-family: "Open Sans", sans-serif;
 	}
 
-	.video-icon {
-		height: 100px; 
-		width: 200px;
-	  padding: 0;
-	  float: left;
-	  margin-right: 20px;
+	#product-title {
+		color: black;
+		margin-top: 12px;
+		font-size: 24px;
 	}
 
 	#courses-in-progress-title, #newsfeed-title {
 		color: rgb(63, 81, 181); /* indigo */ 
+		font-size: 32px;
 	}
 
 	#courses_in_progress_divider, #newsfeed-divider {
 		margin: 0;
 	}
 
+	.mdl-card__supporting-text {
+		width: 97%;
+		margin: 0 auto;
+		/* background-color: rgba(0, 0, 0, 0.05); */ 
+	}
+
+	#product-details-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width: 100%;
+	}
+
+	#product-details-left {
+		width: 500px;
+		
+		margin-bottom: 24px;
+		/* box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); */ 
+	}
+
+	.thumbnail-image {
+	  padding: 0;
+	  width: 100%;
+	}
+
+	#product-content {
+		width: 100%;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); 
+		background-color: rgb(251, 251, 251);   
+		border-radius: 4px;
+	}
+
+	.padded-content {
+		padding: 16px;
+	}
+
+  .product-type {
+    display: inline-block; /* set width to equal content */ 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 2px;
+  }
+
+  .product-type-video {
+    background-color: rgba(0, 88, 255, 0.7); /* blue */
+  }
+
+  .product-type-ebook {
+    background-color: rgba(38, 199, 0, 0.7); /* green */
+  }
+
+	#product-details-right {
+		width: 400px;
+		background-color: rgb(251, 251, 251);
+		border-radius: 4px;
+		margin-bottom: 24px;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	}
+
+	.mdl-tabs__tab-bar {
+		border-bottom: none; 
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+	}
+
+	.mdl-tabs__tab-bar.video {
+		background-color: rgba(0, 88, 255, 0.7); /* blue */ 
+	}
+
+	.mdl-tabs__tab-bar.ebook {
+		background-color: rgba(38, 199, 0, 0.7); /* green */ 
+	}
+
+	.mdl-tabs__tab {
+		font-size: 18px;
+	}
+
+	.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+		color: white;
+	}
+
+	.mdl-tabs__tab > i.material-icons {
+		font-size: 18px;
+		margin-left: 4px;
+	}
+
+	#payment-container {
+		width: 90%;
+		margin: 0 auto;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		background-color: rgb(251, 251, 251);
+		border-radius: 4px;
+	}
+
+	#card-element {
+		padding-left: 1vw; 
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		border-radius: 5px;
+	}
+
+	#purchase-product-title {
+		background-color: rgb(78, 99, 230); /* light indigo */ 
+		color: white;
+		padding: 8px;
+		font-size: 20px;
+		height: 30px;
+		line-height: 30px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+	}
+
 	.active {
 		border-bottom: 1px solid white;
 		padding-bottom: 5px !important;
 	}
+
 </style>
 	{% endblock style %}

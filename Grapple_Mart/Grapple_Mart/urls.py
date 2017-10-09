@@ -6,6 +6,7 @@ from User.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^generic-home/', Generic_Home, name="Generic_Home"),
     url(r'^home/', Home, name="Home"),
     url(r'^social/', Home_Social, name="Social"),
     url(r'^products/', Home_Products, name="Products"),
@@ -20,9 +21,9 @@ urlpatterns = [
 
     url(r'^test-download/', Test_Download, name="Test_Download"),
 
-    url(r'^instructor-profile/', Instructor_Profile, name="Download_Product"),
+    url(r'^instructor-profile-preview/', Instructor_Profile_Preview, name="Instructor_Profile_Preview"),
+    url(r'^instructor-profile/', Instructor_Profile, name="Instructor_Profile"),
     url(r'^tinymce/', include('tinymce.urls')),
-
 ]
 
 if settings.DEBUG is True:

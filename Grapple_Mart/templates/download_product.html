@@ -1,10 +1,9 @@
 {% extends "header.html" %}
 {% block main %}
 {% load static %}
-		  <!-- MAIN CONTENT --> 
-		  <main class="mdl-layout__content">
-		    <div class="page-content">
-		    	<br> <!-- break --> 
+  <!-- MAIN CONTENT --> 
+  	<main class="mdl-layout__content">
+	    <div class="page-content">
 
 			<script type='text/javascript'>
 				function downloadLink(Link) {
@@ -21,57 +20,62 @@
 					}, 10); 
 				}			
 			</script>
-		    	<!-- TABS --> 
-		    	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
+			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+				<!-- Arrow back to Marketplace --> 
+		    	<a href="/marketplace" id='marketplace-back'><i class="material-icons">arrow_back</i>
+		    		<span id='marketplace-back-title'>Marketplace</span>
+		    	</a>
+
+			  	<div class="mdl-card__title" id="newsfeed-card">
+			    	<h2 class="mdl-card__title-text" id="newsfeed-title">
+			    		Download Product
+			    	</h2>
+			  	</div>
+
+			  	<hr id="newsfeed-divider">
+
+			  	<div class="mdl-card__supporting-text">
+				  	<h4>You have purchased <b>{{Product_Title}}</b></h4>
+				  	Use the link below to receive your download:
 				  	<br>
-			    	<!-- TABS 2: Newsfeed --> 
-			    	<div class="mdl-tabs__panel is-active" id="add_product">
-					     <!-- Card 2: Newsfeed --> 
-			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-			    			<a style="color:blue; margin-left:1vw;" href="/marketplace">Back to Marketplace</a>
-							  <div class="mdl-card__title" id="newsfeed-card">
-							    <h2 class="mdl-card__title-text" id="newsfeed-title">
-							    Download Product
-							    </h2>
-							  </div>
-							  <hr id="newsfeed-divider">
-							  <div class="mdl-card__supporting-text">
-							  <h4>You have purchased <b>{{Product_Title}}</b></h4>
-							  Use the link below to receive your download:
-							  <br><br>
+				  	<br>
 
-							 <a href="#" download id='test' onclick='downloadLink(); cloakLink()'> 
-							 Download Product: <b>{{Product_Title}}</b></a>
-							 <br>
-					  	</div>
-					  	</div>
-					 </div>
+				 	<a href="#" download id='test' onclick='downloadLink(); cloakLink()'> 
+				 	Download Product: <b>{{Product_Title}}</b></a>
+				 	<br>
+		  		</div>
+		  	</div>
 
-					  <!-- TAB 3: Courses in Progress --> 
-					<div class="mdl-tabs__panel" id="courses-in-progress-panel">
-				    </div>
-			    	<!-- END TAB 3 --> 
-
-		    	</div> 
-		    	<!-- END TABS --> 
-
-		    </div>
-		  </main>
-		</div>
+	    </div>
+  	</main>
  
 	{% endblock main %}
- </body>
+</body>
 </html>
 <!-- <link rel="stylesheet" type="text/css" href='{% static 'Tests/test_download_style.css' %}'> -->
-
 
 {% block style %}
 <style>
 
-	body {
-		font-family: 'Helvetica', sans-serif;
+	#marketplace-back {
+		color: rgb(255,171,64);
+		text-decoration: none;
+		margin-top: 8px;
+		margin-left: 12px;
+		font-size: 12px;
+		display: block;
 	}
+
+	#marketplace-back > i.material-icons {
+		font-size: 14px;
+		line-height: 30px;
+		height: 30px;
+		font-weight: bold;
+		padding: 0; 
+		padding-right: 2px;
+	}
+
 	a[disabled], a[disabled]:hover {
 	   pointer-events: none;
 	   color: rgba(0, 0, 0, 0.2);
@@ -95,55 +99,24 @@
 		border-bottom: none; 
 	}
 
-	.demo-card-wide.mdl-card {
-  	width: 85%;
-  	margin: 0 auto;
-	}
-
-	.demo-card-wide > #notifications-card {
-	  color: #fff;
-	  height: 300px;
-	  background: url('homepage_notifications_bg.jpg') center / cover;
-	  padding: 0;
-	}
-
-	.demo-card-wide > #notifications-card > .mdl-card__title-text {
-		background-color: rgba(0, 0, 0, 0.5);
+	.mdl-card__supporting-text {
 		width: 100%;
-		padding: 10px;
 	}
 
-	.demo-card-wide > .mdl-card__menu {
-	  color: #fff;
+	.demo-card-wide.mdl-card {
+  		width: 85%;
+  		margin: 0 auto;
+  		background-color: rgba(0, 0, 0, 0.025);
 	}
 
-	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
-		background-color: transparent;
-		color: rgb(255,171,64); /* orange */ 
-	}
-
-	.mdl-list__item--three-line {
-		height: auto;
-	}
-
-	.mdl-list__item--three-line .mdl-list__item-primary-content {
-		height: auto;
-	}
 
 	.mdl-layout__title, .mdl-layout-title {
 		font-family: "Open Sans", sans-serif;
 	}
 
-	.video-icon {
-		height: 100px; 
-		width: 200px;
-	  padding: 0;
-	  float: left;
-	  margin-right: 20px;
-	}
-
 	#courses-in-progress-title, #newsfeed-title {
 		color: rgb(63, 81, 181); /* indigo */ 
+		font-size: 32px;
 	}
 
 	#courses_in_progress_divider, #newsfeed-divider {

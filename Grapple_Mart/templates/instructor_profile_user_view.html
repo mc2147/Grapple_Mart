@@ -1,0 +1,361 @@
+{% extends "header.html" %}
+{% block main %}
+{% load static %}
+
+  <!-- MAIN CONTENT --> 
+  <main class="mdl-layout__content">
+    <div class="page-content">
+
+	    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
+	    	<!-- Arrow back to Marketplace --> 
+	    	<!-- <a href="/marketplace" id='marketplace-back'><i class="material-icons">arrow_back</i>
+	    		<span id='marketplace-back-title'>Marketplace</span>
+	    	</a> -->
+
+			  <div class="mdl-card__title" id="instructor-card">
+			    <h2 class="mdl-card__title-text" id="instructor-title">Instructor Name</h2>
+			  </div>
+
+			  <hr id="instructor-divider">
+			  <div class="mdl-card__supporting-text">
+
+				  <form method="GET">
+				  	<div id='instructor-details-container'>
+					  	<div id='instructor-details-left'>
+					  		<div id='instructor-image-container'>
+					  			<img src = '{% static "Placeholders/instructor_placeholder.png" %}' id='instructor-image'>
+					  		</div>
+									  
+							  <!-- {% if Has_Thumbnail %}
+							  	<img src='{{Thumbnail_URL}}' class='thumbnail-image'>
+							  {% else %}
+							  	<img src='{% static 'Home/video_placeholder.jpg' %}' class='thumbnail-image'>
+							  {% endif %} -->
+				 
+				 				<div id='instructor-content'>
+				 					<div class='padded-content'>
+
+				            <p><b>Team/Affiliation:</b> Place Here!
+				        		</p>
+
+				        		<p><b>Gym Name:</b> Place Here!
+				        		</p>
+				            
+				          </div>
+			          </div>
+
+						  </div>
+
+				      <div id='instructor-details-right'>
+				      	<h3 id='instructor-further-title'> Bio </h3>
+				      	<div class='padded-content'>
+				        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+				      	</div>
+				      </div>
+
+				    </div> <!-- end container --> 
+
+				    <div class='instructor-further-container'>
+			        <h3 id='instructor-further-title'> Awards and Accomplishments </h3>
+
+				    	<div class='padded-content'>
+				    		<ul>
+				    			<li>Award 1</li>
+				    			<li>Award 2</li>
+				    			<li>Award 3</li>
+				    			<li>Award 4</li>
+				    			<li>Award 5</li>
+
+				    		</ul>
+				      </div>
+
+			      </div>
+
+			      <div class='instructor-further-container'>
+			        <h3 id='instructor-further-title'> Products </h3>
+
+				    	<div class='padded-content' id='products-container'>
+				    		
+					    	<div class="demo-card-square mdl-card mdl-shadow--2dp product-card">
+				          <div class="mdl-card__title mdl-card--expand">
+				            <img src='{% static "Placeholders/course_placeholder.jpg" %}' class = "product-thumbnail">
+				           </div>
+				          
+				          <div class="mdl-card__supporting-text products">
+				            <h2 class="mdl-card__title-text product-thumbnail-title">Product Title</h2>
+
+			              <!-- COMMENT in production --> 
+			              <p>This is demo text to help visualize how formatting should be.</p>
+			              
+			              <!-- UNCOMMENT in production --> 
+			              <!--  <p>{{Product.Description}}</p> -->
+
+			              <p class='product-type product-type-ebook'>Type</p>
+
+			              <!-- Conditionally render product type -->
+			              <!-- {% if Product.Product_Type == 'E_Book' %}
+			                <p class='product-type product-type-ebook'>Type</p>
+			              {% elif Product.Product_Type == 'Video' %}
+			                <p class='product-type product-type-video'>{{Product.Product_Type}}</p>
+			              {% endif %} -->
+
+				          </div>
+			            <form style="margin-bottom:0px;" method="GET">
+			            <div class="mdl-card__actions products mdl-card--border">
+			              <input hidden name="Product_PK" value="{{Product.Product_PK}}">
+			              <span class='product-price'>$0</span>
+			              <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect product-view-product" 
+			              value="View Product" name="View_Product">
+			            </div>
+			            </form>
+				        </div>
+				    	</div>
+
+			      </div>
+			 
+					</form>
+			  </div>
+    </div>
+  </main>
+</div>
+ 
+{% endblock main %}
+
+ </body>
+</html>
+
+{% block style %}
+
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#marketplace-back {
+		color: rgb(255,171,64);
+		text-decoration: none;
+		margin-top: 8px;
+		margin-left: 12px;
+		font-size: 12px;
+		display: block;
+	}
+
+	#marketplace-back > i.material-icons {
+		font-size: 14px;
+		line-height: 30px;
+		height: 30px;
+		font-weight: bold;
+		padding: 0; 
+		padding-right: 2px;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.demo-card-wide.mdl-card {
+  	width: 85%;
+  	margin: 0 auto;
+  	background-color: rgba(0,0,0,0.025);
+	}
+
+	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
+		background-color: transparent;
+		color: rgb(255,171,64); /* orange */ 
+	}
+
+	.mdl-list__item--three-line {
+		height: auto;
+	}
+
+	.mdl-list__item--three-line .mdl-list__item-primary-content {
+		height: auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#instructor-title {
+		color: rgb(0, 83, 134); /* blue */ 
+		font-size: 32px;
+	}
+
+	#instructor-divider {
+		margin: 0;
+	}
+
+	.mdl-card__supporting-text {
+		width: 98%;
+		margin: 0 auto;
+		/* background-color: rgba(0, 0, 0, 0.05); */ 
+	}
+
+	#instructor-details-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width: 100%;
+	}
+
+	#instructor-details-left {
+		width: 300px;
+		margin-bottom: 24px;
+		/* box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); */ 
+	}
+
+	#instructor-image-container {
+		width: 70%;
+		margin: 0 auto;
+		margin-bottom: 24px;
+	}
+
+	#instructor-image {
+		width: 100%;
+	}
+
+	#instructor-content {
+		width: 100%;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); 
+		background-color: rgb(251, 251, 251);   
+		border-radius: 4px;
+		text-align: center;
+	}
+
+	.padded-content {
+		padding: 16px;
+	}
+
+	#products-container {
+      width: 96%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 2%;
+      flex-wrap: wrap;
+	}
+
+  .product-type {
+    display: inline-block; /* set width to equal content */ 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 2px;
+  }
+
+  .product-type-video {
+    background-color: rgba(0, 88, 255, 0.7); /* blue */
+  }
+
+  .product-type-ebook {
+    background-color: rgba(38, 199, 0, 0.7); /* green */
+  }
+
+	#instructor-details-right {
+		width: 600px;
+		background-color: rgb(251, 251, 251);
+		border-radius: 4px;
+		margin-bottom: 24px;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	}
+
+	.instructor-further-container {
+		width: 90%;
+		margin: 0 auto;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		background-color: rgb(251, 251, 251);
+		border-radius: 4px;
+		margin-bottom: 24px;
+	}
+
+	#instructor-further-title {
+		background-color: rgb(0, 83, 134); /* light indigo or maybe rgb(1, 121, 195) */ 
+		color: white;
+		padding: 8px;
+		padding-left: 16px;
+		font-size: 20px;
+		height: 30px;
+		line-height: 30px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+
+	.mdl-card__supporting-text.products {
+      padding-top: 0;
+      padding-bottom: 0; 
+      margin: 0 auto;
+      width: 85%;
+      flex-grow: 1; 
+      word-break: break-all;
+  }
+
+  .mdl-card__actions.products {
+    position: relative;
+  }
+
+  .product-card {
+    width: 275px;  
+    margin: 1%;
+    margin-bottom: 4%;
+    font-size: 1vw;
+    background-color: rgba(0,0,0,0.025);
+  }
+
+  .product-thumbnail {
+    width: 230px;
+    height: 300px; 
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.1vw;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .product-thumbnail-title {
+    font-size: 20px;
+    color: black;
+    padding-bottom: 16px;
+  }
+
+  .product-type {
+    display: inline-block; /* set width to equal content */ 
+    color: white;
+    padding: 5px 10px; 
+    border-radius: 2px;
+  }
+
+  .product-type-video {
+    background-color: rgba(0, 88, 255, 0.7); /* blue */
+  }
+
+  .product-type-ebook {
+    background-color: rgba(38, 199, 0, 0.7); /* green */
+  }
+
+  .mdl-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 53px;
+    line-height: 37px;
+    flex-grow: 1;
+  }
+
+  .product-price {
+    margin-left: 16px;
+  }
+
+
+</style>
+	{% endblock style %}

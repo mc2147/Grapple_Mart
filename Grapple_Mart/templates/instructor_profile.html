@@ -16,8 +16,6 @@
 				      <a href="#schedule" class="mdl-tabs__tab">Schedule</a>
 				  	</div>
 
-				  	<br>
-
 					  <div class="mdl-tabs__panel is-active" id="profile">
 					    <!-- Card 1: Notifications --> 
 			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -26,42 +24,45 @@
 							  </div>
 							  <div class="mdl-card__supporting-text">
 
-							    	<!-- Notification 1 --> 
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-					                      <i class="material-icons mdl-list__item-avatar" 
-					                      style="font-size:100px; margin-bottom:30px; margin-top:-30px; margin-right:50px;">person</i>
-									      <br><br><br>
-									      Edit Profile Picture: <input style="margin-bottom:0px; margin-left:2vw;" type="file">
-									    </span>
-									  </li>
+							  	<!-- Instructor Form --> 
+									<form method="POST">{% csrf_token %}
+										<div>
+								  		<i class="material-icons mdl-list__item-avatar">person</i>
+											<p>Edit Profile Picture</p>
+											<input type="file">
+										</div>
 
-									 	<!-- Notification 2 --> 
-									  <li class="mdl-list__item mdl-list__item--three-line">
-									    <span class="mdl-list__item-primary-content">
-									    <br>
-									    Bio:<br>
+										<textarea id='editMe'>
+		                	{{ form.as_p }}
+		                </textarea>
 
-										    <textarea rows="4" cols="100">Bio</textarea>
-										    <br>
-										    <input type="submit" value="Save">
-										    <br><br>
-									    Awards & Accomplishments:<br>
-										    <textarea rows="4" cols="100">Rich Text Editor</textarea>
-										    <br>
-										    <input type="submit" value="Save">
-										    <br><br>
-										    Gym Name:<input type="text" style="margin-left:2vw;" placeholder="Enter Gym Name">
-										    <br><br>
-										    Team/Affiliation:<input type="text" style="margin-left:2vw;" placeholder="Enter Team Name">
-										    <br>
-										    <br>
-									  </li>
+		                <div>
+											<p>
+												<span>Gym Name</span>
+												<div class="mdl-textfield mdl-js-textfield">
+										    	<input class="mdl-textfield__input" type="text" id="sample1">
+										    	<label class="mdl-textfield__label" for="sample1">Enter Name Here</label>
+										  	</div>
+											</p>
+										</div>
 
-									  <!-- Notification 3 --> 
+										<div>
+											<p>
+												<span>Team or Affiliation</span>
+												<div class="mdl-textfield mdl-js-textfield">
+										    	<input class="mdl-textfield__input" type="text" id="sample2">
+										    	<label class="mdl-textfield__label" for="sample2">Enter Name Here</label>
+										  	</div>
+											</p>
+										</div>	
+                		
+                		<button type="submit">Save</button>
+            			</form>						
 							  </div>
 							</div>
 						</div>
+
+
 					  <div class="mdl-tabs__panel" id="highlights">
 					    <!-- Card 1: Notifications --> 
 			    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -159,15 +160,15 @@
 	}
 
 	.demo-card-wide.mdl-card {
-  	width: 85%;
-  	margin: 0 auto;
+  		width: 85%;
+  		margin: 0 auto;
 	}
 
 	.demo-card-wide > #notifications-card {
-	  color: #fff;
-	  /*height: 300px;*/
-	  background: url('homepage_notifications_bg.jpg') center / cover;
-	  padding: 0;
+	  	color: #fff;
+	  	/*height: 300px;*/
+	  	background: url('homepage_notifications_bg.jpg') center / cover;
+	  	padding: 0;
 	}
 
 	.demo-card-wide > #notifications-card > .mdl-card__title-text {
@@ -177,7 +178,7 @@
 	}
 
 	.demo-card-wide > .mdl-card__menu {
-	  color: #fff;
+	  	color: #fff;
 	}
 
 	.mdl-list__item-avatar, .mdl-list__item-avatar.material-icons {
@@ -200,9 +201,9 @@
 	.video-icon {
 		height: 100px; 
 		width: 200px;
-	  padding: 0;
-	  float: left;
-	  margin-right: 20px;
+	  	padding: 0;
+	  	float: left;
+	  	margin-right: 20px;
 	}
 
 	#courses-in-progress-title, #newsfeed-title {
@@ -217,5 +218,7 @@
 		border-bottom: 1px solid white;
 		padding-bottom: 5px !important;
 	}
+	
 </style>
+
 	{% endblock style %}

@@ -1,0 +1,240 @@
+{% extends "generic_header.html" %}
+{% block main %}
+{% load static %}
+
+<div id='homepage-container'>
+
+	<div id='panel1' class='panel'>
+		{% for Product in Product_Displays %}
+    <div class="demo-card-square mdl-card mdl-shadow--2dp product-card">
+      <div class="mdl-card__title mdl-card--expand">
+      {% with Product.Thumbnail_URL as Static_URL %}
+        <img src='{% static Static_URL %}' class = "product-thumbnail">
+      {% endwith %}
+      </div>
+      <div class="mdl-card__supporting-text">
+        <h2 class="mdl-card__title-text product-thumbnail-title">{{Product.Product_Title}}</h2>
+
+        <!-- COMMENT in production --> 
+        <p>This is demo text to help visualize how formatting should be.</p>
+        
+        <!-- UNCOMMENT in production --> 
+        <!--  <p>{{Product.Description}}</p> -->
+       
+        <!-- COMMENT in production --> 
+        <p>Created by </p>
+        
+        <!-- UNCOMMENT in production --> 
+        {% if Product.Product_Owner %}
+          <p>Created by <span>{{Product.Product_Owner}}</span></p>
+        {% endif %}
+
+      </div>
+      <form style="margin-bottom:0px;" method="GET">
+      <div class="mdl-card__actions mdl-card--border">
+        <input hidden name="Product_PK" value="{{Product.Product_PK}}">
+        {% if Product.Product_Type == 'E_Book' %}
+          <p class='product-type product-type-ebook'>{{Product.Product_Type}}</p>
+        {% elif Product.Product_Type == 'Video' %}
+          <p class='product-type product-type-video'>{{Product.Product_Type}}</p>
+        {% endif %}
+        <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect product-view-product" 
+        value="View Product" name="View_Product" style='font-size: 10px; margin: 0; padding: 0;'>
+      </div>
+      </form>
+    </div>
+    {% endfor %}
+
+	</div>
+
+	<div id='panel2' class='panel'>
+		<p>
+			<span>Instructor</span>
+			<span>Athlete</span>
+		</p>
+		<h1>Welcome!</h1>
+		<p>GrappleMart Description</p>
+		
+	</div>
+
+	<div id='panel3' class='panel'>
+		<h1>Instructor</h1>
+	</div>
+
+	<div id='panel4' class='panel'>
+		<h1>Athlete</h1>
+	</div>
+
+</div>
+
+
+
+{% endblock main %}
+
+
+{% block style %}
+<style>
+
+	body, h1, h2, h3, h4, h5, h6, a, p, span, .mdl-button{
+		font-family: "Open Sans", sans-serif;
+	}
+
+	#page-title-link {
+		text-decoration: none; 
+		color: white; 
+	}
+
+	.mdl-layout__drawer-button .material-icons {
+		margin-top: 25%;
+	}
+
+	.demo-card-wide.mdl-card {
+  		width: 85%;
+  		margin: 0 auto;
+	}
+
+	.mdl-layout__title, .mdl-layout-title {
+		font-family: "Open Sans", sans-serif;
+	}
+	#courses-in-progress-title, #newsfeed-title {
+		color: rgb(63, 81, 181); /* indigo */ 
+	}
+
+	#courses_in_progress_divider, #newsfeed-divider {
+		margin: 0;
+	}
+
+	.active {
+		border-bottom: 1px solid white;
+		padding-bottom: 5px !important;
+	}
+
+	#homepage-container {
+	}
+
+	.panel {
+		height: 500px;
+		border-radius: 10px;
+		margin: 0 auto;
+		width: 90%;
+		margin-top: 16px;
+	}
+
+	#panel1 {
+    width: 80%;
+    height: 340px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 8px;
+
+	}
+
+	#panel2 {
+		background-color: rgb(237, 255, 253);
+		text-align: center;
+	}
+
+	#panel3 {
+		background-color: rgb(237, 255, 253);
+	}
+
+	#panel4 {
+		background-color: rgb(237, 255, 253);
+	}
+
+  .mdl-layout__title, .mdl-layout-title, .mdl-textfield__input {
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .mdl-card--expand {
+    flex-grow: 0;
+  }
+
+  .mdl-layout__drawer-button .material-icons {
+      margin-top: 25%;
+  }
+
+  .mdl-card__supporting-text {
+    padding-top: 0;
+    padding-bottom: 0; 
+    margin: 0 auto;
+    width: 85%;
+    flex-grow: 1; 
+  }
+
+  .mdl_card__supporting-text h2 {
+  	word-break: break-all;
+  }
+
+  .mdl-card__supporting-text p {
+  	font-size: 11px;
+  	line-height: 11px;
+  }
+
+  .product-card {
+    width: 200px;  
+    height: 320px;
+    margin: 1%;
+    font-size: 1vw;
+    background-color: rgb(249, 249, 249); 
+    display: inline-block;
+    vertical-align: top; 
+    white-space: normal;
+  }
+
+  .product-thumbnail {
+    width: 100%;
+    height: 120px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.1vw;
+    object-fit: scale-down;
+    margin: 0 auto;
+  }
+
+  .product-thumbnail-title {
+    font-size: 14px;
+    color: black;
+    padding-bottom: 16px;
+  }
+
+  .product-type {
+    display: inline-block; /* set width to equal content */ 
+    color: white;
+    border-radius: 2px;
+    padding: 2px;
+  }
+
+  .product-type-video {
+    background-color: rgba(0, 88, 255, 0.7); /* blue */
+  }
+
+  .product-type-ebook {
+    background-color: rgba(38, 199, 0, 0.7); /* green */
+  }
+
+  .mdl-card__actions {
+    display: block;
+    width: 100%;
+    height: 15px;
+  }
+
+  .mdl-card__actions p {
+  	font-size: 11px;
+  }
+
+  .product-price {
+    margin-left: 16px;
+  }
+
+  .product-view-product {
+  }
+
+
+
+</style>
+
+
+
+{% endblock style %}
