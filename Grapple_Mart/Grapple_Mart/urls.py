@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^test-download/', Test_Download, name="Test_Download"),
 
     url(r'^instructor-profile-preview/', Instructor_Profile_Preview, name="Instructor_Profile_Preview"),
+
+    url(r'^instructor-signup/', Instructor_Signup, name="Instructor_Signup"),
     url(r'^instructor-profile/', Instructor_Profile, name="Instructor_Profile"),
     url(r'^instructor-bookings/', Instructor_Bookings, name="Instructor_Profile"),
     # url(r'^tinymce/', include('tinymce.urls')),

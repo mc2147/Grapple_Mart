@@ -106,6 +106,10 @@ def Create_Product(request):
 		return HttpResponseRedirect("/home")
 	return render(request, "create_product.html", context)
 
+def Instructor_Signup(request):
+	context = {}
+	return render(request, "instructor_signup.html", context) 
+
 def Instructor_Profile(request):
 	context = {}
 	# form = InstructorAwardsForm()
