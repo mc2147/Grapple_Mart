@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-# from .forms import InstructorAwardsForm
+from .forms import InstructorEditForm
 from django.core.files import File
 from django.shortcuts import render
 from models import *
@@ -110,11 +110,35 @@ def Instructor_Signup(request):
 	context = {}
 	return render(request, "instructor_signup.html", context) 
 
+
+# need to include primary key (pk) to get specific instructors
 def Instructor_Profile(request):
 	context = {}
-	# form = InstructorAwardsForm()
+
+	# get instance of instructor based on primary key/id
+	# instructor = get_object_or_404(Instructor, pk=pk)
+
+	if request.method == 'POST':
+		form = InstructorEditForm(request.POST)
+
+		if form.is_valid(): 
+
+			form_dict = form.cleaned_data
+
+			print form_dict
+
+			# instructor.Bio = form_dict['Bio']
+			# instructor.Awards = form_dict['Awards']
+			# instructor.Highlights = form_dict['Highlights']
+
+			# instructor.update() # need to add an update function 
+
+	else: 
+		form = InstructorEditForm()
+
+	context['form'] = form
+		
 	return render(request, "instructor_profile2.html", context)
-	# return render(request, "instructor_profile2.html", { 'form': form })
 
 
 # Need to use primary key (pk) for individual instructors

@@ -1,51 +1,119 @@
-
 {% load static %}
+
 <html>
  	<head>
   	<!-- Material Design Theme --> 
-		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
 		<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css" />
+		<script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script> 
     <script type="text/javascript" src="{% static 'js/tinymce/custom.js'%}" ></script> 
   </head>
   <body>
 
-  	<!-- Instructor Form --> 
-		<form method="POST">{% csrf_token %}
-			<div>
-	  		<i class="material-icons mdl-list__item-avatar">person</i>
-				<p>Edit Profile Picture</p>
-				<input type="file">
+  	<div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  		<header class = "mdl-layout__header">
+    		<div class = "mdl-layout__header-row">
+    			<h1 class = "mdl-layout-title">
+                <a href = "/generic-home" id="page-title-link">GrappleMart</a></h1>
+                <i class="material-icons" style='margin-left: 24px; margin-right: 4px'>search</i>
+                <input type='text' placeholder='Search Website' 
+                    style='font-family: "Open Sans", sans-serif; border-radius: 4px; height: 30px; line-height: 30px;
+                    border: none; padding-left: 10px; width: 300px'>
+    			<!-- <div class = "mdl-layout-spacer"></div> -->
+    			<!-- Where user navigation should be placed --> 
+    			<!-- <nav class = "mdl-navigation">                    
+    				<a class = "mdl-navigation__link {% if NBar == 'Courses' %}active{% endif %}" href = "/courses">
+                    Courses</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Products' %}active{% endif %}" href = "/products">
+                    Purchased Products</a>
+    				<a class = "mdl-navigation__link {% if NBar == 'Social' %}active{% endif %}" href = "/social">
+                    Social</a>
+                    <a class = "mdl-navigation__link {% if NBar == 'Market' %}active{% endif %}" href = "/marketplace">
+                    <i class="material-icons">store_mall_directory</i>
+                    </a>
+    			</nav>  -->
+                <div class = "mdl-layout-spacer"></div>
+                {% if Show_Login %}
+                <a href="{% url 'Login' %}" class='user-action'>Sign Up</a>
+                <a href="{% url 'Login' %}" class='user-action'>Log In</a>
+                {% endif %}
+                
+    		</div>
+    	</header>
+
+    	<div class="mdl-layout__drawer">
+    		<!-- Where global navigation should be placed --> 
+		    <span class="mdl-layout-title">Navigation</span>
+		    <nav class="mdl-navigation">
+                <!-- <a class = "mdl-navigation__link" href = "/home">
+                    <i class="material-icons" style='margin-right: 4px'>account_circle</i>Profile
+                </a> -->
+                <a class="mdl-navigation__link" href="">
+                    <i class="material-icons" style='margin-right: 4px'>home</i>Home</a>
+                <a class="mdl-navigation__link" href="">
+                    <i class="material-icons" style='margin-right: 4px'>info</i>About</a>
+                <a class="mdl-navigation__link" href="">
+                    <i class="material-icons" style='margin-right: 4px'>phone</i>Contact</a>
+		    </nav>
 			</div>
-			
-      	{{ form }}
+		</div>
 
-      <div>
-				<p>
-					<span>Gym Name</span>
-					<div class="mdl-textfield mdl-js-textfield">
-			    	<input class="mdl-textfield__input" type="text" id="sample1">
-			    	<label class="mdl-textfield__label" for="sample1">Enter Name Here</label>
-			  	</div>
-				</p>
-			</div>
+		<div>
 
-			<div>
-				<p>
-					<span>Team or Affiliation</span>
-					<div class="mdl-textfield mdl-js-textfield">
-			    	<input class="mdl-textfield__input" type="text" id="sample2">
-			    	<label class="mdl-textfield__label" for="sample2">Enter Name Here</label>
-			  	</div>
-				</p>
-			</div>	
-  		
-  		<button type="submit">Save</button>
-		</form>						
+	  	<!-- Instructor Form --> 
+			<form method="POST">{% csrf_token %}
+				<div>
+		  		<i class="material-icons mdl-list__item-avatar">person</i>
+					<p>Edit Profile Picture</p>
+					<input type="file">
+				</div>
 
+				<div id='form-container'>
+
+					<div class='form-div'>
+						<p style="position: relative">Bio</p>
+		      	<div class='rich-text-div'>{{ form.Bio }}</div>
+		      </div>
+
+		      <div class='form-div'>
+						<p>Awards</p>
+		      	<div class='rich-text-div'>{{ form.Awards }}</div>
+		      </div>
+
+		      <div class='form-div'>
+						<p>Highlights</p>
+		      	<div class='rich-text-div'>{{ form.Highlights }}</div>
+		      </div>
+
+		    </div>
+
+	      <div>
+					<p>
+						<span>Gym Name</span>
+						<div class="mdl-textfield mdl-js-textfield">
+				    	<input class="mdl-textfield__input" type="text" id="sample1">
+				  	</div>
+					</p>
+				</div>
+
+				<div>
+					<p>
+						<span>Team or Affiliation</span>
+						<div class="mdl-textfield mdl-js-textfield">
+				    	<input class="mdl-textfield__input" type="text" id="sample2">
+				  	</div>
+					</p>
+				</div>	
+	  		
+	  		<button type="submit">Save</button>
+			</form>						
+		</div>
+		
  </body>
 </html>
+
 
 {% block style %}
 <style>
@@ -126,6 +194,30 @@
 		border-bottom: 1px solid white;
 		padding-bottom: 5px !important;
 	}
+
+	#form-container {
+		padding-bottom: 30px;
+	}
+
+	.form-div {
+		width: 70%;
+		height: 300px;
+		padding: 30px 0;
+		position: relative;
+	}
+
+	.rich-text-div {
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+		
+	}
+
+	.richTextEditor {
+		position: relative;
+	}
+
 </style>
 
 {% endblock style %}
