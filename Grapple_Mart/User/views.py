@@ -35,6 +35,7 @@ def Login(request):
 	return render(request, "login.html", context)
 
 def Create_Product(request):
+	# this will be implemented with django class based views
 	for N in Product.objects.all():
 		URL = N.File.url[1:]
 		print(URL)
@@ -69,6 +70,7 @@ def Instructor_Profile(request):
 
 
 def View_Product(request):
+	# this will be implemented with django class based views
 	context = {}
 	context["NBar"] = "View_Product"
 	context["Product_Title"] = "Product Title"
