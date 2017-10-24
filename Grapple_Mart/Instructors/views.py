@@ -1,8 +1,8 @@
 from django.core.files import File
 from django.shortcuts import render
-from User.models import *
+from User.models import Instructor, Product, Course, Course_Item
 from django.http import HttpResponseRedirect
-from User.forms import *
+from User.forms import Instructor_Bio_Form
 
 
 def Instructor_Home(request):
@@ -29,7 +29,7 @@ def Instructor_Home(request):
         Title = request.GET["Course_Title"]
         Description = request.GET["Course_Description"]
         Topic = request.GET["Course_Topic"]
-        New_Course = Course(Owner = _Instructor, Title = Title, Description = Description, Topic = Topic)
+        New_Course = Course(Owner=_Instructor, Title=Title, Description=Description, Topic=Topic)
         New_Course.save()
         request.session["Course_PK"] = New_Course.pk
         request.session["Tab"] = "Create_Course"
@@ -53,7 +53,6 @@ def Instructor_Home(request):
         # request.session["Session_Message"] = "Product Added!"
         return HttpResponseRedirect("/view-instructor-products")
         # return HttpResponseRedirect("/instructor-home")
-
 
     if request.GET.get("Add_Product_Next"):
         request.session["Tab"] = "Add_Product"
@@ -159,7 +158,8 @@ def Create_Course(request):
             Django_File = File(_File)
             print("File: " + Django_File.name)
             Old_Count = _Course.Items.all().count()
-            _Course_Item = Course_Item(Course = _Course, File=Django_File, Title=Title, Type=Type, Description=Description)
+            _Course_Item = Course_Item(Course=_Course, File=Django_File, Title=Title, Type=Type,
+                                       Description=Description)
             _Course_Item.Ordered_ID = Old_Count + 1
             _Course_Item.save()
             print("New Course Item Added: " + str(_Course_Item.Ordered_ID))
@@ -275,7 +275,8 @@ def View_Edit_Course(request):
             Django_File = File(_File)
             print("File: " + Django_File.name)
             Old_Count = _Course.Items.all().count()
-            _Course_Item = Course_Item(Course = _Course, File=Django_File, Title=Title, Type=Type, Description=Description)
+            _Course_Item = Course_Item(Course=_Course, File=Django_File, Title=Title, Type=Type,
+                                       Description=Description)
             _Course_Item.Ordered_ID = Old_Count + 1
             _Course_Item.save()
             print("New Course Item Added: " + str(_Course_Item.Ordered_ID))
@@ -334,4 +335,3 @@ def Instructor_Profile(request):
     context["Bio_Form"] = Bio_Form
     context["NBar"] = "Profile"
     return render(request, "instructor_profile.html", context)
-

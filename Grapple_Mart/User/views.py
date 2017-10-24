@@ -12,7 +12,7 @@ def Demo(request):
 
 
 def Login(request):
-    context = {}
+    context = dict()
     # context["NBar"] = "Home"
     if request.GET.get("Log_In"):
         print("Logging in")
@@ -33,7 +33,6 @@ def Login(request):
         _User = User.objects.get(username=_Username)
         if Instructor.objects.filter(User=_User).exists():
             return HttpResponseRedirect("/instructor-home")
-
 
     if request.GET.get("Sign_Up"):
         print("Signing Up")
@@ -68,7 +67,7 @@ def Login(request):
 
 
 def View_Product(request):
-    context = {}
+    context = dict()
     context["NBar"] = "View_Product"
     context["Product_Title"] = "Product Title"
     print(request.session["Product_PK"])
@@ -76,7 +75,7 @@ def View_Product(request):
         print("Product PK: " + str(request.session["Product_PK"]))
     Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
     Title = Selected_Product.Title
-    Description = Selected_Product.Description
+    # Description = Selected_Product.Description
     context["Product_Title"] = Title
     context["Has_Thumbnail"] = Selected_Product.Has_Thumbnail
     if Selected_Product.Has_Thumbnail:
@@ -87,10 +86,9 @@ def View_Product(request):
     context["Price"] = Selected_Product.Price
 
     if request.method == "POST" and False:
-        token = request.POST.get('stripeToken') # Using Flask
+        token = request.POST.get('stripeToken')  # Using Flask
         try:
-
-            charge = stripe.Charge.create(
+            stripe.Charge.create(
                 amount=Selected_Product.Price*100,
                 currency="usd",
                 description="Purchased Product: " + Selected_Product.Title,
@@ -112,7 +110,7 @@ def View_Product(request):
 
 
 def Download_Product(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Download_Product"
 
     if "Product_PK" in request.session.keys():
@@ -129,11 +127,11 @@ def Download_Product(request):
 
 
 def Test_Download(request):
-    context = {}
+    context = dict()
     if "Product_PK" in request.session.keys():
         print("Product PK: " + str(request.session["Product_PK"]))
         Selected_Product = Product.objects.get(pk=int(request.session["Product_PK"]))
-        Title = Selected_Product.Title
+        # Title = Selected_Product.Title
         File_URL = Selected_Product.File.url
         context["Test_Link"] = File_URL
         context["File_URL"] = File_URL
@@ -144,7 +142,7 @@ def Test_Download(request):
 
 
 def Marketplace(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Market"
     context["Test"] = True
     print(context["NBar"])
@@ -183,30 +181,30 @@ def Marketplace(request):
 
 
 def Home(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Home"
     return render(request, "homepage.html", context)
 
 
 def Test(request):
-    context = {}
+    context = dict()
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
     return render(request, "test_sortable.html", context)
 
 
 def Home_Social(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Social"
     return render(request, "social.html", context)
 
 
 def Home_Products(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Products"
     return render(request, "purchased_products.html", context)
 
 
 def Home_Courses(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Courses"
     return render(request, "courses.html", context)
