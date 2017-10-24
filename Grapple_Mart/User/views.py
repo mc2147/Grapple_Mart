@@ -1,24 +1,22 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from django.core.files import File
 from django.shortcuts import render
-from Instructors.models import *
-from models import *
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.contrib.auth import authenticate, login, logout
-from .forms import *
-import os
-# Create your views here.
+from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
+
+import stripe
+
+from .models import Athlete, User, Instructor, Product
+
 
 def Demo(request):
     return render(request, "demo.html")
+
 
 def Login(request):
     context = {}
     # context["NBar"] = "Home"
     if request.GET.get("Log_In"):
         print("Logging in")
-    
+
     for A in Athlete.objects.all():
         print(A.User.username)
 
@@ -28,7 +26,7 @@ def Login(request):
         user = authenticate(username=_Username, password=_Password)
         if user is not None:
             print("User authenticated")
-                login(request, user)
+            login(request, user)
         else:
             print("Login Failed")
             return HttpResponseRedirect("/")
@@ -68,6 +66,7 @@ def Login(request):
         return HttpResponseRedirect("/home")
     return render(request, "login.html", context)
 
+
 def View_Product(request):
     context = {}
     context["NBar"] = "View_Product"
@@ -87,13 +86,12 @@ def View_Product(request):
     context["Product_Description"] = Selected_Product.Description
     context["Price"] = Selected_Product.Price
 
-
     if request.method == "POST" and False:
         token = request.POST.get('stripeToken') # Using Flask
         try:
 
             charge = stripe.Charge.create(
-                amount=Selected_Product.Price*100, 
+                amount=Selected_Product.Price*100,
                 currency="usd",
                 description="Purchased Product: " + Selected_Product.Title,
                 source=token,
@@ -101,7 +99,7 @@ def View_Product(request):
                 )
             request.session["Product_PK"] = Selected_Product.pk
         except stripe.error.CardError as ce:
-                return False, ce    
+                return False, ce
         return HttpResponseRedirect("/download-product")
 
     if request.method == "POST":
@@ -111,6 +109,7 @@ def View_Product(request):
         return HttpResponseRedirect("/download-product")
 
     return render(request, "view_product.html", context)
+
 
 def Download_Product(request):
     context = {}
@@ -128,6 +127,7 @@ def Download_Product(request):
 
     return render(request, "download_product.html", context)
 
+
 def Test_Download(request):
     context = {}
     if "Product_PK" in request.session.keys():
@@ -141,6 +141,7 @@ def Test_Download(request):
         context["Test_Link"] = "/media/Products/Goblet_Box_Squat_Variations_Bissuht.mp4"
 
     return render(request, "test_download.html", context)
+
 
 def Marketplace(request):
     context = {}
@@ -157,7 +158,7 @@ def Marketplace(request):
         Product_Title = _Product.Title
         if _Product.Has_Thumbnail:
             Display_Dict["Thumbnail_URL"] = _Product.Thumbnail.url
-        else:            
+        else:
             Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
         Display_Dict["Product_Title"] = Product_Title
         Display_Dict["Product_Description"] = _Product.Description
@@ -172,7 +173,7 @@ def Marketplace(request):
     for N in Sample_List:
         Display_Dict = {}
         Product_Title = "Product " + str(N)
-        
+
         Display_Dict["Thumbnail_URL"] = "Placeholders/course_placeholder.jpg"
 
         Display_Dict["Product_Title"] = Product_Title
@@ -186,20 +187,24 @@ def Home(request):
     context["NBar"] = "Home"
     return render(request, "homepage.html", context)
 
+
 def Test(request):
     context = {}
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
     return render(request, "test_sortable.html", context)
+
 
 def Home_Social(request):
     context = {}
     context["NBar"] = "Social"
     return render(request, "social.html", context)
 
+
 def Home_Products(request):
     context = {}
     context["NBar"] = "Products"
     return render(request, "purchased_products.html", context)
+
 
 def Home_Courses(request):
     context = {}

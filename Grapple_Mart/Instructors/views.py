@@ -1,19 +1,15 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.core.files import File
 from django.shortcuts import render
-from models import *
 from User.models import *
-from User.models import Course
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect
 from User.forms import *
-import os
-# Create your views here.
+
+
 def Instructor_Home(request):
-    context = {}
+    context = dict()
     context["NBar"] = "Home"
     _User = request.user
-    
+
     _Instructor = Instructor.objects.get(User=_User)
 
     for _Course in _Instructor.Courses.all():
@@ -69,10 +65,11 @@ def Instructor_Home(request):
     # context["Tab"] = "Notifications"
     return render(request, "instructor_home.html", context)
 
+
 def Instructor_View_Products(request):
-    context = {}
+    context = dict()
     context["Products"] = []
-    _User = request.user    
+    _User = request.user
     _Instructor = Instructor.objects.get(User=_User)
     for _Product in _Instructor.Products.all():
         Display_Dict = {}
@@ -87,6 +84,7 @@ def Instructor_View_Products(request):
         context["Products"].append(Display_Dict)
     return render(request, "instructor_products.html", context)
 
+
 def Create_Product(request):
     for N in Product.objects.all():
         URL = N.File.url[1:]
@@ -96,7 +94,7 @@ def Create_Product(request):
         #     print("File Found")
         #     os.remove(URL)
         #      print("Removed Product File")
-    context = {}
+    context = dict()
     context["NBar"] = "Create_Product"
     if request.POST.get("Add_Product"):
         _File = request.FILES['File_Upload']
@@ -116,8 +114,9 @@ def Create_Product(request):
         return HttpResponseRedirect("/home")
     return render(request, "create_product.html", context)
 
+
 def Create_Course(request):
-    context = {}
+    context = dict()
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
 
     if "Saved_Order" not in request.session.keys():
@@ -213,10 +212,11 @@ def Create_Course(request):
         return HttpResponseRedirect("/instructor-home")
     return render(request, "create_course.html", context)
 
+
 def Instructor_Courses(request):
-    context = {}
+    context = dict()
     context["Courses"] = []
-    _User = request.user    
+    _User = request.user
     _Instructor = Instructor.objects.get(User=_User)
     for _Course in _Instructor.Courses.all():
         Display_Dict = {}
@@ -229,8 +229,9 @@ def Instructor_Courses(request):
         return HttpResponseRedirect("/view-course")
     return render(request, "instructor_courses.html", context)
 
+
 def View_Edit_Course(request):
-    context = {}
+    context = dict()
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
 
     if "Saved_Order" not in request.session.keys():
@@ -326,8 +327,9 @@ def View_Edit_Course(request):
         return HttpResponseRedirect("/instructor-home")
     return render(request, "view_course.html", context)
 
+
 def Instructor_Profile(request):
-    context = {}
+    context = dict()
     Bio_Form = Instructor_Bio_Form()
     context["Bio_Form"] = Bio_Form
     context["NBar"] = "Profile"
