@@ -2,39 +2,39 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
-from User.views import Home, Home_Social, Home_Courses, Home_Products, Login, Demo, Marketplace
-from User.views import View_Product, Download_Product, Test_Download, Test
-from Instructors.views import Instructor_Home, Instructor_Profile, Create_Product, Create_Course
-from Instructors.views import Instructor_View_Products, Instructor_Courses, View_Edit_Course
+from User.views import home, home_social, home_courses, home_products, login, demo, marketplace
+from User.views import view_product, download_product, test_download, test
+from Instructors.views import instructor_home, instructor_profile, create_product, create_course
+from Instructors.views import instructor_view_products, instructor_courses, view_edit_course
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', Home, name="Home"),
-    url(r'^social/', Home_Social, name="Social"),
-    url(r'^products/', Home_Products, name="Products"),
-    url(r'^courses/', Home_Courses, name="Courses"),
-    url(r'^login/', Login, name="Login"),
-    url(r'^$', Demo, name="Demo"),
+    url(r'^home/', home, name="home"),
+    url(r'^social/', home_social, name="social"),
+    url(r'^products/', home_products, name="products"),
+    url(r'^courses/', home_courses, name="courses"),
+    url(r'^login/', login, name="login"),
+    url(r'^$', demo, name="demo"),
 
-    url(r'^marketplace/', Marketplace, name="Courses"),
+    url(r'^marketplace/', marketplace, name="marketplace"),
 
-    url(r'^view-product/', View_Product, name="View_Product"),
-    url(r'^download-product/', Download_Product, name="Download_Product"),
+    url(r'^view-product/', view_product, name="view_product"),
+    url(r'^download-product/', download_product, name="download_product"),
 
-    url(r'^test-download/', Test_Download, name="Test_Download"),
+    url(r'^test-download/', test_download, name="test_download"),
 
     # INSTRUCTOR SIDE
-    url(r'^instructor-home/', Instructor_Home, name="Instructor_Home"),
-    url(r'^instructor-profile/', Instructor_Profile, name="Instructor_Profile"),
+    url(r'^instructor-home/', instructor_home, name="instructor_home"),
+    url(r'^instructor-profile/', instructor_profile, name="instructor_profile"),
     url(r'^tinymce/', include('tinymce.urls')),
     # CREATE PRODUCT
-    url(r'^add-product/', Create_Product, name="Add_Product"),
-    url(r'^view-instructor-products/', Instructor_View_Products, name="Instructor_View_Products"),
+    url(r'^add-product/', create_product, name="add_product"),
+    url(r'^view-instructor-products/', instructor_view_products, name="instructor_view_products"),
     # CREATE COURSE
-    url(r'^create-course/', Create_Course, name="Create_Course"),
-    url(r'^instructor-courses/', Instructor_Courses, name="Instructor_Courses"),
-    url(r'^view-course/', View_Edit_Course, name="Create_Course"),
-    url(r'^test/', Test, name="Create_Course"),
+    url(r'^create-course/', create_course, name="create_course"),
+    url(r'^instructor-courses/', instructor_courses, name="instructor_courses"),
+    url(r'^view-course/', view_edit_course, name="view_edit_course"),
+    url(r'^test/', test, name="test"),
 ]
 
 if settings.DEBUG is True:

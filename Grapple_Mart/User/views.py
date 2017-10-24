@@ -7,11 +7,11 @@ import stripe
 from .models import Athlete, User, Instructor, Product
 
 
-def Demo(request):
+def demo(request):
     return render(request, "demo.html")
 
 
-def Login(request):
+def login(request):
     context = dict()
     # context["NBar"] = "Home"
     if request.GET.get("Log_In"):
@@ -66,7 +66,7 @@ def Login(request):
     return render(request, "login.html", context)
 
 
-def View_Product(request):
+def view_product(request):
     context = dict()
     context["NBar"] = "View_Product"
     context["Product_Title"] = "Product Title"
@@ -109,7 +109,7 @@ def View_Product(request):
     return render(request, "view_product.html", context)
 
 
-def Download_Product(request):
+def download_product(request):
     context = dict()
     context["NBar"] = "Download_Product"
 
@@ -126,7 +126,7 @@ def Download_Product(request):
     return render(request, "download_product.html", context)
 
 
-def Test_Download(request):
+def test_download(request):
     context = dict()
     if "Product_PK" in request.session.keys():
         print("Product PK: " + str(request.session["Product_PK"]))
@@ -141,7 +141,7 @@ def Test_Download(request):
     return render(request, "test_download.html", context)
 
 
-def Marketplace(request):
+def marketplace(request):
     context = dict()
     context["NBar"] = "Market"
     context["Test"] = True
@@ -180,31 +180,31 @@ def Marketplace(request):
     return render(request, "marketplace.html", context)
 
 
-def Home(request):
+def home(request):
     context = dict()
     context["NBar"] = "Home"
     return render(request, "homepage.html", context)
 
 
-def Test(request):
+def test(request):
     context = dict()
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
     return render(request, "test_sortable.html", context)
 
 
-def Home_Social(request):
+def home_social(request):
     context = dict()
     context["NBar"] = "Social"
     return render(request, "social.html", context)
 
 
-def Home_Products(request):
+def home_products(request):
     context = dict()
     context["NBar"] = "Products"
     return render(request, "purchased_products.html", context)
 
 
-def Home_Courses(request):
+def home_courses(request):
     context = dict()
     context["NBar"] = "Courses"
     return render(request, "courses.html", context)

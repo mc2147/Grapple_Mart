@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from User.forms import Instructor_Bio_Form
 
 
-def Instructor_Home(request):
+def instructor_home(request):
     context = dict()
     context["NBar"] = "Home"
     _User = request.user
@@ -65,7 +65,7 @@ def Instructor_Home(request):
     return render(request, "instructor_home.html", context)
 
 
-def Instructor_View_Products(request):
+def instructor_view_products(request):
     context = dict()
     context["Products"] = []
     _User = request.user
@@ -84,7 +84,7 @@ def Instructor_View_Products(request):
     return render(request, "instructor_products.html", context)
 
 
-def Create_Product(request):
+def create_product(request):
     for N in Product.objects.all():
         URL = N.File.url[1:]
         print(URL)
@@ -114,7 +114,7 @@ def Create_Product(request):
     return render(request, "create_product.html", context)
 
 
-def Create_Course(request):
+def create_course(request):
     context = dict()
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
 
@@ -213,7 +213,7 @@ def Create_Course(request):
     return render(request, "create_course.html", context)
 
 
-def Instructor_Courses(request):
+def instructor_courses(request):
     context = dict()
     context["Courses"] = []
     _User = request.user
@@ -230,7 +230,7 @@ def Instructor_Courses(request):
     return render(request, "instructor_courses.html", context)
 
 
-def View_Edit_Course(request):
+def view_edit_course(request):
     context = dict()
     context["Video_Thumbnail"] = "/static/Home/video_placeholder.jpg"
 
@@ -329,7 +329,7 @@ def View_Edit_Course(request):
     return render(request, "view_course.html", context)
 
 
-def Instructor_Profile(request):
+def instructor_profile(request):
     context = dict()
     Bio_Form = Instructor_Bio_Form()
     context["Bio_Form"] = Bio_Form
